@@ -6,19 +6,21 @@
 ## JavaScript Introduction
 
 1. HTML `<script/>`
-2. Interpreter vs Compiler
+2. Interpreter vs. Compiler
 3. Key Words
 4. Variables
 5. Operators
 6. Dynamic typing
 7. String
 8. Number
-9. Code Style. Notion types. Naming.
+9. Type checking
+10. Code Style. Notion types. Naming
 
 ### HTML `<script/>`
 
-1. Исполнение JS кода в браузере (inline)
-2. Подключение внешних JS файлов с кодом в браузере (head, body)
+1. Исполнение JS кода в HTML документе (inline script)
+2. Подключение внешних JS файлов в HTML документе (head, body)
+3. Исполнение JS кода HTML атрибутом-обработчиком события
 
 ### Interpreter vs Compiler
 
@@ -40,9 +42,6 @@
 
 1. Что такое переменная?
 2. Как определить переменную?
-   1. Var
-   2. Let (интро)
-   3. Const (интро)
 3. Как перезаписать переменную?
 
 ### Operators
@@ -66,6 +65,20 @@
 
 `()`
 
+3. Порядок выполнения операций
+
+Слева на право
+
+`+, -, *, /, %`
+
+Справа на лево
+
+`=, +=, -=, *=, /=, **, ++..., --...`
+
+---
+
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence?retiredLocale=uk#table
+
 ### Dynamic typing
 
 1. Что такое тип данных?
@@ -74,20 +87,24 @@
 ### String
 
 1. Для чего нужен тип данных string?
-2. Как создать тип данных string в JavaScript?
-3. Явное приведение к типу данных string (String, .toString)
-4. Неявное приведение к типу данных string (конкатенация)
+2. Как задавать данные с типом string в JavaScript?
+3. Явное приведение данных к типу string (String, .toString)
+4. Неявное приведение данных к типу string (конкатенация)
 
 ### Number
 
 1. Для чего нужен тип данных number?
 2. Какие числа используются в JavaScript? (integer, double, float)
-3. Операции с типом данных number
-4. Явное приведение к типу данных number (Number, parseInt, parseFloat)
-5. Неявное приведение к типу данных number (+)
-6. Infinity
+3. Как задавать данные с типом number?
+4. Явное приведение данных к типу number (+, Number, parseInt, parseFloat)
+6. -Infinity, Infinity
 7. NaN
-8. Rounding (Math.round, Math.floor, Math.ceil, toFixed)
+9. -0, 0
+10. Rounding (Math.round, Math.floor, Math.ceil, toFixed)
+
+### Type checking
+
+1. Typeof
 
 ### Code Style. Notion types. Naming
 
