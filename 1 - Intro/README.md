@@ -47,7 +47,7 @@
 ### Operators
 
 1. Для чего нужны операторы?
-2. Какие есть операторы в JavaScripy?
+2. Какие есть операторы в JavaScript?
 
 Арифметические унарные операторы
 
@@ -100,7 +100,7 @@
 6. -Infinity, Infinity
 7. NaN
 9. -0, 0
-10. Rounding (Math.round, Math.floor, Math.ceil, toFixed)
+10. BigInt
 
 ### Type checking
 
