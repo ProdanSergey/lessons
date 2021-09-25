@@ -12,5 +12,5 @@
 
 И выводит в браузер рузультирующую информацию в виде строки `User Bio: Serhii Prodan, 33 years old;`
 
-> * Для вывода информации на страницу использовать [document.write()](https://https://learn.javascript.ru/document-write)
+> * Для вывода информации на страницу использовать [document.write()](https://learn.javascript.ru/modifying-document#neskolko-slov-o-document-write)
 > * Для рассчета возвраста используем константу равную числу 2021. Не обращаем внимание на погрешность
