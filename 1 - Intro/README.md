@@ -18,9 +18,9 @@
 
 ### HTML `<script/>`
 
-1. Исполнение JS кода в HTML документе (inline script)
-2. Подключение внешних JS файлов в HTML документе (head, body)
-3. Исполнение JS кода HTML атрибутом-обработчиком события
+1. Исполнение JavaScript кода в HTML документе (inline script)
+2. Подключение внешних JavaScript файлов в HTML документе (head, body)
+3. Исполнение JavaScript кода HTML атрибутом-обработчиком события
 
 ### Interpreter vs Compiler
 
