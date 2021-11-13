@@ -1,0 +1,14 @@
+.box {
+	font-size: 2em;
+}
+
+.box:nth-child(odd) {
+	background-color: red;
+	color: white;
+	border: 1px solid black;
+	margin: 1px;
+}
+
+.box.uniq {
+	color: green;
+}
