@@ -1,0 +1,13 @@
+.section {
+	padding: 16px;
+}
+
+.important {
+	padding: 8px;
+	background-color: black;
+	color: white;
+}
+
+button {
+	margin: 8px;
+}
