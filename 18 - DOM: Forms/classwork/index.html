@@ -11,6 +11,64 @@
 	<script defer src="./app/index.js"></script>
 </head>
 <body>
-	
+	<div id='root'>
+		<form name='signUp'>
+			<label>
+				<span>Login</span>
+				<input type="text" name="login" placeholder="Enter Login" />
+			</label>
+			<label>
+				<span>Email</span>
+				<input autocomplete="email" type="text" name="email"/>
+			</label>
+			<label>
+				<span>Password</span>
+				<input type="password" name="password"/>
+			</label>
+			<label>
+				<span>Password confirm</span>
+				<input type="password" name="passwordConfirm"/>
+			</label>
+			<label>
+				Biography
+				<textarea name="bio" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla labore quis magni repellat, eaque perspiciatis fugiat quisquam. Numquam, est quis unde deserunt quaerat quia repudiandae. Ducimus nesciunt exercitationem a atque?
+				</textarea>
+			</label>
+			<label>
+				Theme
+				<select name="theme">
+					<option name="light" value="light">Light</option>
+					<option name="dark" value="dark">Dark</option>
+				</select>
+			</label>
+			<fieldset name="subscriptions">
+				<label>
+					Get news feed
+					<input type="checkbox" name="subscribe" value="news" />
+				</label>
+				<label>
+					Email subscribe
+					<input type="checkbox" name="subscribe" value="email" />
+				</label>
+			</fieldset>
+			<fieldset name="plans">
+				<label>
+					<input type="radio" name="plan" value="basic" />
+					Basic
+				</label>
+				<label>
+					<input type="radio" name="plan" checked value="advance" />
+					Advance
+				</label>
+			</fieldset>
+			<label>
+				You must agree with our policy
+				<input type="checkbox" name="consent" />
+			</label>
+
+			<button id="submitBtn" disabled>Send Form</button>
+			<button id="resetBtn">Reset</button>
+		</form>
+	</div>
 </body>
 </html>
