@@ -4,7 +4,7 @@
 2. Какие задачи решает промис?
 3. Как создать промис?
 4. Жизненный цикл промиса:
-	1. state: pending, resolved, rejected.
+	1. state: pending, fullfilled, rejected.
 	2. result: value || error.
 3. Методы-подписчики:
 	1. promise.then().
