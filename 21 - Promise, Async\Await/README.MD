@@ -21,6 +21,7 @@
 	4. Promise.allSettled().
 	5. Promise.any().
 	6. Promise.race().
+6. Промисификация.
 
 ## Async/Await
 	1. Что такое асинхронная функция?
@@ -29,4 +30,4 @@
 
 
 [We have a problem with Promises](https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html)
-[Taming](https://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html)
+[Taming the async beast with es7](https://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html)
