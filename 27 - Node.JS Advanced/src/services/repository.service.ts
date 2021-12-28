@@ -1,11 +1,18 @@
 import { flatten } from 'flat';
 import { get } from 'lodash';
 import { NotFoundError } from "../definitions/error.definition";
+import { Appointment } from '../entities/appointment.entity';
+import { Doctor } from '../entities/doctor.entity';
+import { Facility } from '../entities/facility.entity';
 import { Entity } from "./entity.service";
 
-type TableName = string;
+type TableName = 'appointment' | 'facilities' | 'doctors';
 
-const DB= {};
+const DB = {
+	appointment: [] as Appointment[],
+	facilities: [] as Facility[],
+	doctors: [] as Doctor[]
+};
 
 type PartialEntity<T> = Partial<Record<keyof T, any>>; 
 
