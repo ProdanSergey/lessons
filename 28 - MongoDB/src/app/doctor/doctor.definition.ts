@@ -1,4 +1,4 @@
-import { DoctorSpec } from '../../entities/doctor.entity';
+import { DoctorSpec } from '../../models/doctor.models';
 
 export interface DoctorCreateBody {
 	firstName: string;

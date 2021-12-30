@@ -1,26 +1,25 @@
 
-import { Doctor, DoctorSpec } from "../../entities/doctor.entity";
-import { DoctorRepository } from "../../repositories/doctor.repository";
-import { FacilityRepository } from "../../repositories/facility.repository";
+import { NotFoundError } from "../../definitions/error.definition";
+import { DoctorSpec, Doctor } from "../../models/doctor.models";
+import { Facility } from '../../models/facility.models';
 
 export class DoctorService {
-	constructor(
-		private readonly facilityRepository = new FacilityRepository(),
-		private readonly doctorRepository = new DoctorRepository()
-	) {
+	async create(facilityId: string, firstName: string, lastName: string, spec: DoctorSpec) {
+		const facility = await Facility.findById(facilityId).exec();
 
-	}
+		if (!facility) {
+			throw new NotFoundError();
+		}
 
-	create(facilityId: string, firstName: string, lastName: string, spec: DoctorSpec) {
-		const facility = this.facilityRepository.findOneOrFail({ id: facilityId })
+		const doctor = new Doctor({
+			firstName,
+			lastName,
+			spec,
+			facility
+		});
 
-		const doctor = new Doctor();
+		const result = await doctor.save();
 
-		doctor.firstName = firstName;
-		doctor.lastName = lastName;
-		doctor.spec = spec;
-		doctor.facility = facility;
-
-		return this.doctorRepository.insert(doctor);
+		return result.populate('facility');
 	}
 }

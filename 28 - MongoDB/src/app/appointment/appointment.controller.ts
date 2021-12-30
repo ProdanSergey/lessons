@@ -1,29 +1,49 @@
 import * as express from 'express';
-import type {Request, Response} from 'express';
+import type { Request } from 'express';
 import { AppointmentService } from './appointment.service';
-import { AppointmentCreateBody, AppointmentCreateParams, AppointmentListParams, AppointmentFindParams, AppointmentDeleteParams} from './appointment.definition';
+import { AppointmentCreateBody, AppointmentUpdateBody, AppointmentCreateParams, AppointmentUpdateParams,  AppointmentListParams, AppointmentFindParams, AppointmentDeleteParams} from './appointment.definition';
 import { UnauthorizedError } from '../../definitions/error.definition';
+import { withHandler } from '../../decorators/with-handler.decorator';
 
 const appointments = express.Router({ mergeParams: true });
 
 const appointmentService = new AppointmentService();
 
-appointments.post('/', (req: Request<AppointmentCreateParams, any, AppointmentCreateBody>, res: Response) => {
-	const userId = req.user;
-
-	if (!userId) {
-		throw new UnauthorizedError();
+appointments.post('/', withHandler<Request<AppointmentCreateParams, any, AppointmentCreateBody>>(
+	async (req, res) => {
+		const userId = req.user;
+	
+		if (!userId) {
+			throw new UnauthorizedError();
+		}
+	
+		const { facilityId, doctorId } = req.params;
+		const { startAt } = req.body;
+	
+		const response = await appointmentService.create(userId, facilityId, doctorId, startAt);
+	
+		res.json(response)
 	}
+))
 
-	const { facilityId, doctorId } = req.params;
-	const { startAt } = req.body;
+appointments.put('/:appointmentId', withHandler<Request<AppointmentUpdateParams, any, AppointmentUpdateBody>>(
+	async (req, res) => {
+		const userId = req.user;
+	
+		if (!userId) {
+			throw new UnauthorizedError();
+		}
+	
+		const { facilityId, doctorId, appointmentId } = req.params;
+		const { startAt } = req.body;
+	
+		const response = await appointmentService.update(userId, facilityId, doctorId, appointmentId, startAt);
+	
+		res.json(response)
+	}
+))
 
-	const response = appointmentService.create(userId, facilityId, doctorId, startAt);
-
-  res.json(response)
-})
-
-appointments.get('/:appointmentId', (req: Request<AppointmentFindParams>, res: Response) => {
+appointments.get('/:appointmentId', withHandler<Request<AppointmentFindParams>>(async (req, res) => {
 	const userId = req.user;
 
 	if (!userId) {
@@ -32,12 +52,12 @@ appointments.get('/:appointmentId', (req: Request<AppointmentFindParams>, res: R
 
 	const { facilityId, doctorId, appointmentId } = req.params;
 
-	const response = appointmentService.find(userId, facilityId, doctorId, appointmentId);
+	const response = await appointmentService.find(userId, facilityId, doctorId, appointmentId);
 
-  res.json(response)
-})
+	res.json(response)
+}));
 
-appointments.delete('/:appointmentId', (req: Request<AppointmentDeleteParams>, res: Response) => {
+appointments.delete('/:appointmentId', withHandler<Request<AppointmentDeleteParams>>(async (req, res) => {
 	const userId = req.user;
 
 	if (!userId) {
@@ -49,9 +69,9 @@ appointments.delete('/:appointmentId', (req: Request<AppointmentDeleteParams>, r
 	appointmentService.delete(userId, facilityId, doctorId, appointmentId);
 
   res.sendStatus(204)
-})
+}))
 
-appointments.get('/', (req: Request<AppointmentListParams>, res: Response) => {
+appointments.get('/', withHandler<Request<AppointmentListParams>>(async (req, res) => {
 	const userId = req.user;
 
 	if (!userId) {
@@ -63,6 +83,6 @@ appointments.get('/', (req: Request<AppointmentListParams>, res: Response) => {
 	const response = appointmentService.list(userId, facilityId, doctorId);
 
   res.json(response)
-})
+}))
 
 export { appointments };

@@ -1,18 +1,28 @@
-import { Facility } from "../../entities/facility.entity";
-import { FacilityRepository } from "../../repositories/facility.repository";
+import { NotFoundError } from "../../definitions/error.definition";
+import { Facility } from "../../models/facility.models";
 
 export class FacilityService {
-	constructor(
-		private readonly facilityRepository = new FacilityRepository()
-	) {
+	async create(name: string) {
+		const facility = new Facility({
+			name
+		});
 
+		return facility.save();
 	}
 
-	create(name: string) {
-		const facility = new Facility();
+	async find(facilityId: string) {
+		const facility = await Facility.findById(facilityId).exec();
 
-		facility.name = name;
+		if (!facility) {
+			throw new NotFoundError();
+		}
 
-		return this.facilityRepository.insert(facility);
+		return facility;
+	}
+
+	async list() {
+		const facilities = await Facility.find().exec();
+
+		return facilities;
 	}
 }
