@@ -1,0 +1,15 @@
+.card__deck {
+	display: flex;
+}
+
+.card__container {
+	flex: 1;
+}
+
+.card__header {
+
+}
+
+.card__body {
+	
+}
