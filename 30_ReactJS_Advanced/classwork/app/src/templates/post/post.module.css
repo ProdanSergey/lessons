@@ -1,0 +1,17 @@
+.title {
+	margin: 0;
+	text-transform: uppercase;
+	color: lightcoral;
+}
+
+.body {
+	line-height: 1.2;
+}
+
+.body::first-letter {
+	font-size: 3em;
+	font-weight: bold;
+	text-transform: uppercase;
+	line-height: 1;
+	color: lightcoral;
+}
