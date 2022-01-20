@@ -33,15 +33,3 @@
 8. slice(), substring().
 9. charAt(), charCodeAt(), fromCharCode().
 10. indexOf(), lastIndexOf(), includes().
-
-## Number Prototype
-
-1. MAX_VALUE, MIN_VALUE, POSITIVE_INFINITY, NEGATIVE_INFINITY, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER.
-2. toFixed().
-3. toExponential().
-4. toPrecision().
-5. isNaN().
-6. isInteger().
-7. isSafeInteger().
-8. isFinite().
-9. Math.
