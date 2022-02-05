@@ -1,67 +1,17 @@
-1. Скопировать каталог з ДЗ-6 в каталог ДЗ-7.
-2. Добавить !!!ОДНУ функцию из 3 на выбор:
-
-   1. Спросить у пользователя через `prompt()` максимально допустимый возраст пользователей которые будут ему показаны из архива. Например:
-
-      ```
-      const USERS = [
-        		{firstName: 'John', yearOfBirth: 1990},
-        		{firstName: 'Peter', yearOfBirth: 1980},
-        		{firstName: 'Emmy', yearOfBirth: 1989}
-      ];
-
-      const showFilteredUsers = function() {
-        		if (!USERS.length) {
-        			return...
-        		}
-
-        const maxYear = getNumberInput('Enter max birth year of a user', 1990, CURRENT_YEAR);
-
-        // console.log() каждого юзера чей год рождения не больше чем указан в maxYear;
-      }
-      ```
-   2. Спросить у пользователя через `prompt()` имя пользователя которого он хочет найти в архиве. Например:
-
-      ```
-        	const USERS = [
-        		{firstName: 'John', yearOfBirth: 1990},
-        		{firstName: 'Peter', yearOfBirth: 1980},
-        		{firstName: 'Emmy', yearOfBirth: 1989}
-        	];
-
-        	const showUserByName = function() {
-        		if (!USERS.length) {
-        			return...
-        		}
-
-        		const userName = getStringInput('Enter user name to search');
-
-        		// const user = find in USERS array;
-
-        		if (user) {
-        			console.log('Here is the user you've been looking for', user);
-        		} else {
-        			console.log('There is not such user');
-        		}
-        	}
-      ```
-   3. Показать средний возраст всех пользователей в архиве Например:
-
-      ```
-      	const USERS = [
-      		{firstName: 'John', yearOfBirth: 1990},
-      		{firstName: 'Peter', yearOfBirth: 1980},
-      		{firstName: 'Emmy', yearOfBirth: 1989}
-      	];
-
-      	const showUserByName = function() {
-      		if (!USERS.length) {
-      			console.log('No users');
-      		}
-
-      		const approxAge = find approxAge for all users...
-
-      		console.log('All users approximate age is', approxAge);
-      	}
-      ```
-3. Рассчитать age (возраст каждого юзера в массиве USERS) при помощи объекта Date. (Убираем переменную CURRENT_YEAR);
+1. Создать пустой массив `entries = []`; 
+2. При помощи `prompt()` заполнить массив данными:
+	1. Каждый раз когда пользователь вводит данные и нажимает `ОК` записать их в массив `entries`.
+	2. Повторить ввод данных.
+	3. Пользователю позволяется вводить абсолютно любую информацию.
+	4. Как только пользователь нажмет `ОТМЕНА` закончить ввод данных.
+3. На основе `entries` выполнить следующие задачи:
+	1. найти все числовые строки (целые и с плавающей точкой).
+	2. подсчитать общую сумму.
+	3. прерывать цепочку методов запрещено.
+4. На основе `entries` выполнить следующие задачи:
+	1. найти все нечисловые строки.
+	2. отсортировать их по длине строки по убыванию.
+	3. преобразовать каждую строку к формату `[length]: string`.
+	4. вывести список всех строк в консоль.
+	5. каждая запись на новой строке.
+	6. прерывать цепочку методов запрещено.
