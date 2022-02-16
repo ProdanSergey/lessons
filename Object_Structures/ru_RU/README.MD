@@ -17,14 +17,22 @@
 ## Map
 
 1. Map - как объект, где ключом может быть другой объект.
-2. Map API.
+2. Сравнение ключей в Map (sameValueZero).
+3. Порядок ключей в Map.
+4. Размер Map.
+5. Object to Map. Map to Object.
+6. Методы итерации Map.
 
 ## Set
 
 1. Set - как множество уникальных значений.
-2. Set API.
+2. Сравнение значений в Set (sameValueZero).
+3. Array to Set. Set to Array.
+4. Методы итерации Set.
 
 ## WeakMap, WeakSet
+
 1. WeakMap, WeakSet - как способ оптимизировать затраты памяти на большие коллекции.
 2. Ключи - только объекты.
 3. WeakMap, WeakSet - "живые" коллекции.
+4. Size отсутствует.
