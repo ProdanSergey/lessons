@@ -7,7 +7,7 @@ const STDIN = {
 		Необязательный параметр strict контролирует, может ли пользователь нажать отмена и прекратить ввод данных (по умолчанию true).
 		Возвращает валидное значение типа Number или Null в случае отмены. 
 	*/
-	number(message, validate, strict = true),
+	getNumberFromUser(message, validate, strict = true),
 	/*
 		Принимает сообщение для запроса ввода данных (prompt()) от пользователя и функцию валидации.
 		Необязательный параметр strict контролирует, может ли пользователь нажать отмена и прекратить ввод данных (по умолчанию true).
@@ -15,6 +15,21 @@ const STDIN = {
 	*/
 	string(message, validate, strict = true),
 }
+
+const validateBirthYear = (value) => {
+	const input = Number(value);
+
+	return isNaN(value) || value < 10 || value > 20;
+};
+
+const birthYear = STDIN.number('Enter your birthYear', validateBirthYear, true);
+
+
+const validateFirstName = (input) => {
+	return input !== null || input.length < 10 || input.length > 20
+};
+
+const birthFirstName = STDIN.string('Enter your birthYear', validateFirstName, true);
 
 const DATE = {
 	/*
@@ -48,6 +63,21 @@ const DATE = {
 		* take(fro, to) - возвращает срез архива по индексам от, до.
 		* isEmpty() - возвращает значение типа Boolean, является ли архив пустым.
 		* count() - возвращает количество записей в архиве.
+```javascript
+const archiveFabric = () => {
+	const archive = [];
+
+
+	return {
+		add(item) {
+			archive.push(item);
+		}
+	};
+}
+
+const archive = archiveFabric();
+archive.add(1);
+```
 3. Создать фабричную функцию для генерации объекта Employee
    1. со следующим набором полей:
       * firstName - имя работника.
@@ -79,7 +109,7 @@ const getCurrentDate = function () {
 ```javascript
 const APP = {
 	// экземпляр Archive для хранения объектов типа Employee
-	archive,
+	archive
 	/* 
 		Спрашивает пользователя о том, какую операцию с архивом он желает выполнить, до тех пор пока тот не пожелает завершить выполнение программы.
 		Набор операций: ['EXIT', 'ADD', 'DELETE', 'SHOW_ALL'].
@@ -100,7 +130,12 @@ const APP = {
 		записей в архиве.
 	*/
 	addEntry() {
+		const firstName = STDIN.string()
+		const lastName = STDIN.string();
 
+		const user = userFabric(firstName, lastName);
+
+		this.archive.add(user);
 	},
 	/* 
 		Выполняет операцию 'DELETE'.
@@ -108,14 +143,28 @@ const APP = {
 		если массив пуст.
 	*/
 	deleteEntry() {
+		const length = this.archive.count();
 
+		if (!length) {
+			return console.log('EMPTY ARCHIVE');
+		}
+
+		const validate = (value) => {
+			// ...
+		};
+
+		const index = STDIN.number(`Enter index to be deleted: min 0, max ${length - 1}`);
+
+		this.archive.delete(index);
 	},
 	/* 
 		Выполняет операцию 'SHOW_ALL'.
 		Выводит в консоль все записи в архиве об успешном добавлении или ошибку если массив пуст.
 	*/
 	showEntries() {
-
+		this.archive.each((el, index) => {
+			console.log(el )
+		})
 	}
 }
 ```
