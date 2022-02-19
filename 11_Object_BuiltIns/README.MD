@@ -1,18 +1,23 @@
 ## Date
 
 1. Получить текущее время:
-   1. new Date().
-   2. Date.now().
+   * new Date().
+   * Date.now().
 2. Получить заданное время:
-   1. new Date(ms).
-   2. new Date(string).
-   3. new Date(year, month, date, hours, minutes, seconds, ms).
+   * new Date(ms).
+   * new Date(year, month, date, hours, minutes, seconds, ms).
+	 * new Date(string).
 3. Получение конкретного значения. Год, месяц, день, час, минута, секунда, мс, день недели.
 4. Установка конкретного значения. Год, месяц, день, час, минута, секунда, мс.
-5. Получение timestamp, временной метки (getTime()).
-6. Установка timestamp, временной метки (setTime()).
-7. Получение разницы между временными поясами (getTimezoneOffset()).
+5. getTime() - Получение timestamp, временной метки.
+6. setTime() - Установка timestamp, временной метки.
+7. getTimezoneOffset() - Получение разницы между временными поясами.
 8. Автоисправление даты.
+9. форматирование:
+	* iso
+	* utc
+	* gmt (deprecated)
+	* string/local string
 
 ## Map
 
