@@ -1,11 +1,15 @@
 ## Символы
-   1. Создание символа.
-   2. Тип данных Symbol. `typeof` symbol.
-   3. Symbol !== String.
-   4. Symbol как ключ объекта.
-   5. Symbol при переборе for...in. [Object.getOwnPropertySymbols(obj)](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols)
-   6. Symbol.for(), Symbol.keyFor().
-   7. Системные (глобальные) символы.
+1. Что такое символ?
+2. Как создание символ?
+3. `typeof` symbol.
+4. Symbol !== String.
+5. Символы объектов.
+6. Перебор объектов с символами:
+	* for...in
+	* [Object.getOwnPropertySymbols(obj)](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols)
+7. Symbol.for()
+8. Symbol.keyFor().
+9. Системные (глобальные) символы.
 
 ## Итераторы
 
@@ -24,6 +28,13 @@
 
 ## Генераторы
 
-1. Синтаксис
+1. Генератор как фабрика итераторов.
 	* `function*`
-	*	yield
+	*	возврат при помощи return
+	* порождение при помощи yield
+	* сообщение генератору при помощи generator.next(message)
+	* возбуждение ошибки в генераторе при помощи generator.throw(error)
+2. Генератор итерируемых объекты.
+3. Бесконечные генераторы.
+4. Композиция генераторов.
+

@@ -1,4 +1,4 @@
-1. Создать объект итератор:
+1. Создать итератор:
 ```javascript
 {
 	items: ['hello', 1, 0, null, 'world', 'baz', {foo: 'bar'}, Infinity, NaN]
@@ -6,7 +6,7 @@
 ```
 * реализовать перебор нечетных элементов в `items`.
 
-2. Создать объект итератор:
+2. Создать итератор:
 ```javascript
 {
 	items: ['hello', 1, 0, null, 'world', 'baz', {foo: 'bar'}, Infinity, NaN]
@@ -16,26 +16,42 @@
 
 3. Создать генератор високосных годов, начиная с 1900 по указанный (по умолчанию текущий) год.
 
-4. Создать генератор счетчиков с изменяемым интервалом. Начальное значение счетчика 0, интервала 1.
 ```javascript
-console.log(counter.next()); // 0
-console.log(counter.next()); // 1
-console.log(counter.next(10)); // 10
-console.log(counter.next()); // 20
-console.log(counter.next()); // 30
-console.log(counter.next(100)); // 300
+const leapYear =  leapYears(2001);
+
+console.log(leapYear.next()); // {value: 1904, done: false}
+console.log(leapYear.next()); // {value: 1908, done: false}
+console.log(leapYear.next()); // {value: 1912, done: false}
+console.log(leapYear.next()); // {value: 2000, done: true}
+```
+
+4. Создать генератор-счетчик с динамическим интервалом. Начальное значение 0, интервал 1.
+```javascript
+
+const count =  counter();
+
+console.log(count.next()); // {value: 0, done: false}
+console.log(count.next()); // {value: 1, done: false}
+console.log(count.next(10)); // {value: 11, done: false}
+console.log(count.next()); // {value: 21, done: false}
+console.log(count.next()); // {value: 31, done: false}
+console.log(count.next(100)); // {value: 131, done: false}
 ```
 5. Создать генератор четных чисел.
 ```javascript
-console.log(evens.next()); // 2
-console.log(evens.next()); // 4
-console.log(evens.next()); // 6
+const even =  evens();
+
+console.log(even.next()); // {value: 2, done: false}
+console.log(even.next()); // {value: 4, done: false}
+console.log(even.next()); // {value: 6, done: false}
 ```
 
-6. Создать генератор последовательностей четных чисел (используя генератор из пункта 5). Размер последовательности от 1 до 20 элементов.
+6. Создать генератор случайных последовательностей четных чисел (используя генератор из пункта 5). Размер последовательности от 1 до 20 элементов.
 ```javascript
-console.log(randomEvens.next()); // [2, 4, 6]
-console.log(randomEvens.next()); // [2, 4, 6, 8, 10]
-console.log(randomEvens.next()); // [2]
+const evens =  randomEvens();
+
+console.log(evens.next()); // {value: [2, 4, 6], done: false}
+console.log(evens.next()); // {value: [2, 4, 6, 8, 10], done: false}
+console.log(evens.next()); // {value: [2], done: false}
 ```
 
