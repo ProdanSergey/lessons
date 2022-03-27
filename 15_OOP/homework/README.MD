@@ -19,7 +19,7 @@ class MultiTool {
 2. Создать дочерний класс CheepMultiTool
 
 ```javascript
-class ExpensiveMultiTool extends MultiTool {}
+class CheepMultiTool extends MultiTool {}
 ```
 
 3. Создать дочерний класс ExpensiveMultiTool расширяющий набор методов супер класса MultiTool
