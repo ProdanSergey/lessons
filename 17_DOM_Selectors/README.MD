@@ -19,8 +19,7 @@
    4. lastChild / lastElementChild
    5. nextSibling / nextElementSibling
    6. previousSibling / previousElementSibling
-   7. childNodes / children
-   8. element.hasChildNodes()
+   7. element.hasChildNodes()
 4. Tag:
    1. tagName
    2. innerHtml / outerHtml

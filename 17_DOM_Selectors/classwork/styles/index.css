@@ -1,0 +1,16 @@
+#region {
+  width: 200px;
+  height: 200px;
+  background-color: tomato;
+}
+
+.icon-with-text {
+  /* position: relative; */
+}
+
+.icon-with-text .icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
