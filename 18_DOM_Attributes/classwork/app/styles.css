@@ -1,0 +1,10 @@
+.sc-tabs-actions .sc-tabs-active {
+  font-weight: bold;
+  background-color: lightblue;
+}
+
+.app-tabs__body {
+  padding: 16px;
+  background-color: lightgray;
+}
+
