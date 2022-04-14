@@ -4,6 +4,14 @@
 2. Достижение цели - `Event.AT_TARGET` (2)
 3. Всплытие - `Event.BUBBLING_PHASE` (3)
 
+### Погружение
+
+1. `addEventListener(type, callback, true)`
+2. `addEventListener(type, callback, { capture: true })`
+3. `eventPhase === 1`
+4. `event.target`
+5. `event.currentTarget`
+
 ### Всплытие
 
 1. `event.eventPhase === 3`
@@ -13,20 +21,12 @@
 5. `event.stopPropagation()` - запретить всплытие по вертикали
 6. `event.stopImmediatePropagation()` - запретить всплытие по горизонтали и вертикали
 
-### Погружение
-
-1. `addEventListener(type, callback, true)`
-2. `addEventListener(type, callback, { capture: true })`
-3. `eventPhase === 1`
-4. `event.target`
-5. `event.currentTarget`
-
 ### Действие по умолчанию
 
-1. `event.preventDefault()`
-2. `event.cancelable`
+1. `event.cancelable`
+2. `event.preventDefault()`
 3. `return false`
-4. Пассивные слушатели
+4. `addEventListener(type, callback, { passive: true })`
 
 ### Делегирование события
 
