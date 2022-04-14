@@ -1,0 +1,40 @@
+## Фазы события
+
+1. Погружение - `Event.CAPTURING_PHASE` (1)
+2. Достижение цели - `Event.AT_TARGET` (2)
+3. Всплытие - `Event.BUBBLING_PHASE` (3)
+
+### Погружение
+
+1. `addEventListener(type, callback, true)`
+2. `addEventListener(type, callback, { capture: true })`
+3. `eventPhase === 1`
+4. `event.target`
+5. `event.currentTarget`
+
+### Всплытие
+
+1. `event.eventPhase === 3`
+2. `event.target`
+3. `event.currentTarget`
+4. `event.bubbles`
+5. `event.stopPropagation()` - запретить всплытие по вертикали
+6. `event.stopImmediatePropagation()` - запретить всплытие по горизонтали и вертикали
+
+### Действие по умолчанию
+
+1. `event.cancelable`
+2. `event.preventDefault()`
+3. `return false`
+4. `addEventListener(type, callback, { passive: true })`
+
+### Делегирование события
+
+1. Что такое делегирование события
+
+### Генерация события
+
+1. Конструкторы событий
+2. `element.dispatchEvent(type, [options])`
+3. Пользовательские события
+4. Действия по умолчанию для пользовательских событий
