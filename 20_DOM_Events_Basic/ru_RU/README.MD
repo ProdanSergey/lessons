@@ -1,14 +1,40 @@
 ## События
 
-1. Типы событий
-  * document
-  * mouse
-  * touch
-  * keyboard
+1. page
+  * load
+  * beforeunload
+  * unload
+  * DOMContentLoaded
+2. mouse
+  * click
+  * dbclick
+  * mouseup
+  * mousedown
+  * mouseover
+  * mouseleave
+  * mouseout
+3. touch
+  * touchstart
+  * touchmove
+  * touchend
+4. keyboard
+  * keydown
+  * keyup
+  * keypress
+5. focus
   * focus
-  * inputs
-  * clipboard
-  * text-selection
+  * focusin
+  * blur
+  * focusout
+6. inputs
+  * change
+  * input
+7. clipboard
+  * cut
+  * copy
+  * paste
+8. text-selection
+  * selectionchange
 
 ## Обработка событий
 
