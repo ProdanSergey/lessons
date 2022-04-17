@@ -1,0 +1,32 @@
+.headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dummy {
+  height: 3000px;
+  background-color: red;
+  width: 100%;
+}
+
+.table {
+  display: inline-block;
+  border-left: 1px solid darkblue;
+  border-top: 1px solid darkblue;
+}
+
+.table__row {
+  display: flex;
+}
+
+.table__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-right: 1px solid darkblue;
+  border-bottom: 1px solid darkblue;
+  cursor: pointer;
+}
