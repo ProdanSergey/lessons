@@ -1,0 +1,25 @@
+body {
+  margin: 8px;
+}
+
+.chapter {
+  padding: 16px;
+  background-color: lightgray;
+  border-radius: 4px;
+  max-width: 720px;
+}
+
+.chapter + .chapter {
+  margin-top: 8px;
+}
+
+.chapter-header {
+  display: inline-block;
+  padding: 8px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.chapter-header button {
+  margin-left: 8px;
+}
