@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 200vw;
+  height: 8000px;
+}
+
+.tooltip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 16px;
+  background-color:aqua;
+  border-radius: 6px;
+}
