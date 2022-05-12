@@ -33,7 +33,7 @@ const Track = () => {
 	};
 };
 
-const Comment = () => {
+const EntityComment = () => {
 	return {
 		id: uuid(),
 		text: faker.Lorem.paragraphs(3),

@@ -2,56 +2,78 @@
   ```javascript
   // симулятор ошибок
   const randomizeError = () => {
-  const random = RANDOM.integer(1, 100);
+    const random = RANDOM.integer(1, 100);
 
-  if (random > 90) {
-    return new Error('Bad Request');
-  }
+    if (random > 90) {
+      return new Error('Bad Request');
+    }
 
-  return null;
+    return null;
   };
 
   // симулятор запроса в БД в таблицу юзеров.
   const getUsers = (callback) => {
-  const USERS = [
-    {id: 1, name: 'Bob'},
-    {id: 2, name: 'Andy'},
-    {id: 3, name: 'John'},
-  ];
+    const USERS = [
+      {id: 1, name: 'Bob'},
+      {id: 2, name: 'Andy'},
+      {id: 3, name: 'John'},
+    ];
 
-  setTimeout(() => {
-    callback(randomizeError(), USERS);
-  }, 2000);
+    setTimeout(() => {
+      callback(randomizeError(), USERS);
+    }, 2000);
   };
 
   // симулятор запроса в таблицу продуктов.
   const getProducts = (callback) => {
-  const PRODUCTS = [
-    {id: 1, name: 'iPad'},
-    {id: 2, name: 'Google Pixel'},
-    {id: 3, name: 'War and Peace'},
-    {id: 4, name: 'iPad'},
-    {id: 5, name: 'Kaizen'},
-    {id: 6, name: 'Sherlock Holmes'},
-  ];
+    const PRODUCTS = [
+      {id: 1, name: 'iPad'},
+      {id: 2, name: 'Google Pixel'},
+      {id: 3, name: 'War and Peace'},
+      {id: 4, name: 'iPad'},
+      {id: 5, name: 'Kaizen'},
+      {id: 6, name: 'Sherlock Holmes'},
+    ];
 
-  setTimeout(() => {
-    callback(randomizeError(), PRODUCTS);
-  }, 2000);
+    setTimeout(() => {
+      callback(randomizeError(), PRODUCTS);
+    }, 2000);
   };
 
   // симулятор запроса в таблицу заказов.
   const getOrders = (callback) => {
-  const ORDERS = [
-    {id: 1, userId: 1, checkout: [1, 6]},
-    {id: 2, userId: 1, checkout: [3]},
-    {id: 3, userId: 2, checkout: [2, 4]},
-  ];
+    const ORDERS = [
+      {id: 1, userId: 1, checkout: [1, 6]},
+      {id: 2, userId: 1, checkout: [3]},
+      {id: 3, userId: 2, checkout: [2, 4]},
+    ];
 
-  setTimeout(() => {
-    callback(randomizeError(), ORDERS);
-  }, 2000);
+    setTimeout(() => {
+      callback(randomizeError(), ORDERS);
+    }, 2000);
   };
+
+  userId = 1; => {
+    id: 1, 
+    name: "Bob",
+    orders: [
+      {
+        id: 1, 
+        userId: 1, 
+        checkout: [
+          { id: 1, name: "iPad" }, 
+          { id: 6, name: "Sherlock holmes" }
+        ],
+      },
+      {
+        id: 2, 
+        userId: 1,
+        checkout: [
+          { id: 3, name: "War and Peace" }
+        ]
+      }
+    ]
+  }
   ```
 
 ## Error First Callback 
