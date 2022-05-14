@@ -57,107 +57,151 @@ const renderSportsmen = () => {
 		.catch((err) => console.warn(err));
 };
 
-renderSportsmen();
-
 const build = (entity, count) => {
 	return new Array(count).fill(null).map(() => entity);
 };
 
 /*** Promise ***/
 
-const fakeRequest = (body, error) => {
-	const promise = new Promise((resolve, reject) => {
-		const requestId = uuid();
-		console.log(`[Request: ${requestId} ] Start`);
+const runPromiseApp = (() => {
+	const request = (body, error) => {
+		const promise = new Promise((resolve, reject) => {
+			const requestId = uuid();
+			console.log(`[Request: ${requestId} ] Start`);
 
-		setTimeout(() => {
-			console.log(`[Request: ${requestId}] Finish`);
+			setTimeout(() => {
+				console.log(`[Request: ${requestId}] Finish`);
 
-			error ? reject(error) : resolve(body);
-		}, 1000);
-	});
-
-	return promise;
-};
-
-const getArtistPromise = () => {
-	return fakeRequest(Artist());
-};
-
-const getArtistTop10AlbumsPromise = () => {
-	return fakeRequest(build(Album(), 10));
-};
-
-const getArtistCommentsPromise = () => {
-	return fakeRequest(build(EntityComment(), 3));
-};
-
-const runPromiseApp = () => {
-	getArtistPromise()
-		.then((artist) => {
-			console.log(artist);
-
-			return Promise.allSettled([
-				getArtistTop10AlbumsPromise(),
-				getArtistCommentsPromise(),
-			]);
-		})
-		.then((comments) => {
-			console.log(comments);
+				error ? reject(error) : resolve(body);
+			}, 1000);
 		});
-};
 
-runPromiseApp();
+		return promise;
+	};
+
+	const getArtist = () => {
+		return request(Artist());
+	};
+
+	const getArtistTop10Albums = () => {
+		return request(build(Album(), 10));
+	};
+
+	const getArtistComments = () => {
+		return request(build(EntityComment(), 3));
+	};
+
+	return () => {
+		getArtist()
+			.then((artist) => {
+				console.log(artist);
+
+				return Promise.allSettled([
+					getArtistTop10Albums(),
+					getArtistComments(),
+				]);
+			})
+			.then((comments) => {
+				console.log(comments);
+			});
+	};
+})();
+
+// runPromiseApp();
 
 /*** Error First Callback ***/
 
-const fakeCallbackRequest = (callback, body, error = null) => {
-	const requestId = uuid();
+const runCallbackApp = (() => {
+	const request = (callback, body, error = null) => {
+		const requestId = uuid();
 
-	console.log(`[Request: ${requestId} ] Start`);
-	setTimeout(() => {
-		console.log(`[Request: ${requestId}] Finish`);
+		console.log(`[Request: ${requestId} ] Start`);
+		setTimeout(() => {
+			console.log(`[Request: ${requestId}] Finish`);
 
-		callback(error, body);
-	}, 1000);
-};
+			callback(error, body);
+		}, 1000);
+	};
 
-const getArtist = (cb) => {
-	fakeCallbackRequest(cb, Artist());
-};
+	const getArtist = (cb) => {
+		request(cb, Artist());
+	};
 
-const getArtistTop10Albums = (cb) => {
-	fakeCallbackRequest(cb, build(Album(), 10), new Error("Not found"));
-};
+	const getArtistTop10Albums = (cb) => {
+		request(cb, build(Album(), 10), new Error("Not found"));
+	};
 
-const getArtistComments = (cb) => {
-	fakeCallbackRequest(cb, build(EntityComment(), 3));
-};
+	const getArtistComments = (cb) => {
+		request(cb, build(EntityComment(), 3));
+	};
 
-const runCallbackApp = () => {
-	getArtist((error, artist) => {
-		if (!error) {
-			console.log(artist);
+	return () => {
+		getArtist((error, artist) => {
+			if (!error) {
+				console.log(artist);
 
-			getArtistTop10Albums((error, top10Albums) => {
-				if (!error) {
-					console.log(top10Albums);
+				getArtistTop10Albums((error, top10Albums) => {
+					if (!error) {
+						console.log(top10Albums);
 
-					getArtistComments((error, comments) => {
-						if (!error) {
-							console.log(comments);
-						} else {
-							console.warn(error);
-						}
-					});
-				} else {
-					console.warn(error);
-				}
-			});
-		} else {
-			console.warn(error);
-		}
-	});
-};
+						getArtistComments((error, comments) => {
+							if (!error) {
+								console.log(comments);
+							} else {
+								console.warn(error);
+							}
+						});
+					} else {
+						console.warn(error);
+					}
+				});
+			} else {
+				console.warn(error);
+			}
+		});
+	};
+})();
 
-runCallbackApp();
+// runCallbackApp();
+
+/*** Async Await ***/
+
+const runAsyncApp = (() => {
+	const request = (body, error) => {
+		const promise = new Promise((resolve, reject) => {
+			const requestId = uuid();
+			console.log(`[Request: ${requestId} ] Start`);
+
+			setTimeout(() => {
+				console.log(`[Request: ${requestId}] Finish`);
+
+				error ? reject(error) : resolve(body);
+			}, 1000);
+		});
+
+		return promise;
+	};
+
+	const getArtist = () => {
+		return request(Artist());
+	};
+
+	const getArtistTop10Albums = () => {
+		return request(build(Album(), 10));
+	};
+
+	const getArtistComments = () => {
+		return request(build(EntityComment(), 3));
+	};
+
+	return async () => {
+		const artist = await getArtist();
+
+		const [top10Albums, comments] = await Promise.allSettled([
+			getArtistTop10Albums(),
+			getArtistComments(),
+		]);
+	};
+})();
+
+runAsyncApp();
