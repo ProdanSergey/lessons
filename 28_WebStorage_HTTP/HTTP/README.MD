@@ -11,6 +11,7 @@
    * Delete.
    * Options.
    * Head.
+   * Connect.
 5. Idempotent методы.
 6. Safe методы.
 7. HTTP статус коды:
@@ -20,7 +21,7 @@
    * 5xx.
 8. HTTP хедеры.
 9. CORS.
-10. Query параметры.
+10. URL.
 11. Mime типы.
 
 ## Demo

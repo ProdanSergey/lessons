@@ -1,7 +1,9 @@
 ## Cookies
 
 1. document.cookie
-2. options:
+  * first-party
+  * third-party
+2. tags:
   * path.
   * domain.
   * expires.
