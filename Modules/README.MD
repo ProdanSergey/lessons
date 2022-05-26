@@ -27,4 +27,4 @@
 
 ### Articles
 
-* [Dynamic Import](https://v8.dev/features/dynamic-importhttps:/)
+* [Dynamic Import](https://v8.dev/features/dynamic-import)
