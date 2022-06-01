@@ -1,0 +1,1 @@
+1. Переписать функцию getCheckoutsForUserAsPromise используя асинхронные функции.
