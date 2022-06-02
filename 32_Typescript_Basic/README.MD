@@ -1,6 +1,6 @@
 ### Configuration
 
-1. Webpack ts-loader:
+1. tsc:
   * установка
   * настройка
 

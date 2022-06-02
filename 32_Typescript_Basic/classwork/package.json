@@ -1,13 +1,13 @@
 {
-  "name": "classwork",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "fe-pro-13-typescript-basic",
+  "version": "0.0.1",
+  "description": "Basic TypeScript browser repository",
+  "main": "src/index.ts",
   "scripts": {
     "build": "rollup -c",
     "start": "ENVIRONMENT=development rollup -c -w"
   },
-  "author": "",
+  "author": "Serhii Prodan",
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.2",
