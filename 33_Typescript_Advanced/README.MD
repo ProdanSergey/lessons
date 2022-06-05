@@ -1,10 +1,10 @@
-1. Утилиты:
+1. Class
+2. Generics
+3. Overloads
+4. Утилиты:
 	* Record
 	* Partial
 	* Pick
 	* Omit
 	* Parameters
 	* ReturnType
-2. Generics
-3. Class
-4. Overloads
