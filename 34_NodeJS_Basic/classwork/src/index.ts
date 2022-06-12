@@ -1,4 +1,5 @@
-import { FileStore } from "./adapters/file-store";
+import { FileSystemAppointmentRepository } from "./adapters/filesystem/appointment";
+import { AppointmentFile } from "./adapters/filesystem/appointment-file";
 import { CLIOutput } from "./adapters/logger";
 import { NodeCLI } from "./adapters/node-cli";
 import { AppointmentController } from "./app/appointment/controller";
@@ -6,9 +7,8 @@ import { AppointmentController } from "./app/appointment/controller";
 const bootstrap = async () => {
 	const nodeCliInput = new NodeCLI();
 	const nodeCliOutput = new CLIOutput();
-	const store = new FileStore();
-
-	await store.init();
+	const appointmentFile = await AppointmentFile.initStore();
+	const appointmentRepository = new FileSystemAppointmentRepository(appointmentFile);
 
 	const handleError = (error: unknown) => {
 		if (error instanceof Error) {
@@ -23,7 +23,7 @@ const bootstrap = async () => {
 	process.on("uncaughtException", handleError);
 	process.on("unhandledRejection", handleError);
 
-	await new AppointmentController(nodeCliOutput, nodeCliInput, store).process();
+	await new AppointmentController(nodeCliOutput, nodeCliInput, appointmentRepository).process();
 };
 
 bootstrap();

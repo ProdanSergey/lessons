@@ -6,23 +6,20 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "watch": "tsc --watch",
-    "build": "tsc",
-    "create": "npm run start -- --create",
-    "get": "npm run start -- --get",
-    "complete": "npm run start -- --complete",
-    "delete": "npm run start -- --delete",
-    "list": "npm run start -- --list",
-    "clear": "npm run start -- --clear"
+    "build": "tsc"
   },
   "author": "Serhii Prodan",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/lodash": "^4.14.182",
     "@types/node": "^17.0.41",
     "typescript": "^4.7.3"
   },
   "dependencies": {
-    "dayjs": "^1.11.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-query-parser": "^1.3.3",
     "lodash": "^4.17.21"
   }
 }

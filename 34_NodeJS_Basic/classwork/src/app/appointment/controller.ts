@@ -1,15 +1,15 @@
 import { Appointment } from "../../domain/appointment";
 import { CLI, CLICommand } from "../../ports/cli";
 import { Logger } from "../../ports/logger";
-import { Store } from "../../ports/store";
 import { CreateAppointmentCommand } from "../../commands/CreateAppointmentCommand";
 import { GetAppointmentCommand } from "../../commands/GetAppointmentCommand";
+import { AppointmentRepository } from "../../ports/repositories/appointment";
 
 export class AppointmentController {
 	constructor(
 		private readonly nodeCliOutput: Logger,
 		private readonly nodeCli: CLI,
-		private readonly store: Store
+		private readonly appointmentRepository: AppointmentRepository
 	) {}
 
 	async process() {
@@ -17,24 +17,24 @@ export class AppointmentController {
 
 		if (command === CLICommand.CREATE) {
 			const appointment = await new CreateAppointmentCommand(
-				this.store
+				this.appointmentRepository
 			).execute();
 
 			const record = Appointment.toRecord(appointment);
 
-			this.nodeCliOutput.print(`[${record.id}] created`);
+			this.nodeCliOutput.print(`[${record.id}] has been created`);
 		}
 
 		if (command === CLICommand.GET) {
 			const { id } = this.nodeCli.getQuery();
 
-			const appointment = await new GetAppointmentCommand(this.store).execute({
+			const appointment = await new GetAppointmentCommand(this.appointmentRepository).execute({
 				id,
 			});
 
 			const record = Appointment.toRecord(appointment);
 
-			this.nodeCliOutput.print(`[${record.id}] found`);
+			this.nodeCliOutput.print(`[${record.id}] has been found`);
 		}
 	}
 }

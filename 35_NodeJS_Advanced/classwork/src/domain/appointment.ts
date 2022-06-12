@@ -34,10 +34,6 @@ export class Appointment {
 		return appointment.record;
 	}
 
-	static toModel(appointment: Appointment): Appointment {
-		return new Appointment(appointment.record);
-	}
-
 	static create() {
 		const now = new Date();
 
@@ -50,9 +46,5 @@ export class Appointment {
 
 	private static generateId(now: Date): string {
 		return `AP-${now.getHours()}/${now.getMinutes()}/${now.getSeconds()}/${now.getMilliseconds()}`;
-	}
-
-	update(partial: Partial<AppointmentRecord>): void {
-		this.record = {...this.record, ...partial }
 	}
 }
