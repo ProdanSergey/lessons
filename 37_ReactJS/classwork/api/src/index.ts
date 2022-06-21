@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
+import * as cors from "cors";
 import { queryParser } from "express-query-parser";
 import { connect } from "./infra/mongo";
 import { AppointmentEntity } from "./infra/mongo/entities/appointment";
@@ -18,6 +19,11 @@ const bootstrap = async (app: express.Express) => {
 
 	const nodeCliOutput = new CLIOutput();
 	const appointmentRepository = new MongoDBAppointmentRepository(AppointmentEntity);
+
+	app.use(cors({
+		origin: ["http://localhost:3030", "http://localhost:8080"],
+		methods: ["GET", "POST", "DELETE", "PUT"]
+	}));
 
 	app.use(express.json()); // Parse JSON body to object
 
