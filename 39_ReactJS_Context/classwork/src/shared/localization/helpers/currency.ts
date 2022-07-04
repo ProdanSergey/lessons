@@ -5,6 +5,9 @@ export const mapCurrency = (locale: AvailableLocale) => {
 	return "GBP";
 };
 
-export const toCurrency = (value: number): string => {
-	return String(value);
+export const toCurrency = (value: number, locale: AvailableLocale): string => {
+	return new Intl.NumberFormat(locale, {
+		style: "currency",
+		currency: mapCurrency(locale),
+	}).format(value);
 };

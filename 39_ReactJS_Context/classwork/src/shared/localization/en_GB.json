@@ -1,1 +1,12 @@
-{}
+{
+  "checkout": {
+    "title": "Your checkout",
+    "empty": "Your checkout is empty",
+    "total": {
+      "title": "Total"
+    }
+  },
+  "product": {
+    "cta": "Add To Cart"
+  }
+}

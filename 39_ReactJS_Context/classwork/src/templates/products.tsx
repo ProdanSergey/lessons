@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
+import { InternalizationContext } from "../contexts/internalization";
 import { Product } from "../domain/product";
+import { toCurrency } from "../shared/localization/helpers/currency";
 import {
 	StyledItem,
 	StyledProduct,
@@ -9,11 +11,15 @@ import {
 
 export type ShopProductsProps = {
 	items: Product[];
+	onProductAdd: (product: Product) => void;
 };
 
 export const ShopProducts: FunctionComponent<ShopProductsProps> = ({
 	items,
+	onProductAdd,
 }) => {
+	const { locale, resource } = useContext(InternalizationContext);
+
 	return (
 		<ul>
 			{items.map((product) => {
@@ -27,13 +33,15 @@ export const ShopProducts: FunctionComponent<ShopProductsProps> = ({
 								<ul>
 									<li>{title}</li>
 									<li>
-										<strong>{price}</strong>
+										<strong>{toCurrency(price, locale)}</strong>
 									</li>
 								</ul>
 							</StyledBreakdown>
 						</StyledProduct>
 						<p>{description}</p>
-						<StyledCTA>Add To Cart</StyledCTA>
+						<StyledCTA onClick={() => onProductAdd(product)}>
+							{resource.product.cta}
+						</StyledCTA>
 					</StyledItem>
 				);
 			})}

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useCallback, useState } from "react";
 import { Container } from "./shared/layout/grid";
 import { Locale } from "./templates/locale";
 import { ShopCart } from "./templates/cart";
@@ -12,8 +12,15 @@ import {
 	StyledSidebar,
 	StyledToolbar,
 } from "./app.styled";
+import { Product } from "./domain/product";
 
-const AppComponent: FunctionComponent = () => {
+export const App: FunctionComponent = () => {
+	const [products, setProducts] = useState<Product[]>([]);
+
+	const handleProductAdd = useCallback((product: Product): void => {
+		setProducts((state) => [...state, product]);
+	}, []);
+
 	return (
 		<StyledGrid>
 			<StyledHeader>
@@ -22,24 +29,21 @@ const AppComponent: FunctionComponent = () => {
 						<h1>React Marketplace</h1>
 						<StyledToolbar>
 							<Locale />
-							<ShopCart />
+							<ShopCart items={products} />
 						</StyledToolbar>
 					</StyledHeaderWrapper>
 				</Container>
 			</StyledHeader>
 			<StyledSidebar>
 				<Container>
-					<CheckoutPage />
+					<CheckoutPage items={products} />
 				</Container>
 			</StyledSidebar>
 			<StyledContent>
 				<Container>
-					<ProductsPage />
+					<ProductsPage onProductAdd={handleProductAdd} />
 				</Container>
 			</StyledContent>
 		</StyledGrid>
 	);
 };
-
-export const App = React.memo(AppComponent);
-App.displayName = "MemoApp";
