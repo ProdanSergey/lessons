@@ -1,33 +1,35 @@
 {
-	"env": {
+  "env": {
     "browser": true,
     "node": true,
-		"es6": true
+    "es6": true
   },
-	"parserOptions": {
-		"ecmaVersion": "latest",
+  "parserOptions": {
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
-	},
-	"extends": [
-		"eslint:recommended",
-		"plugin:prettier/recommended",
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
     "plugin:react/recommended"
-	],
-	"rules": {
-		"no-unused-vars": "off",
-		"no-constant-condition": "off"
-	},
-  "overrides": [{
-    "files": ["*.ts", "*.tsx"],
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "extends": [
-      "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended",
-      "plugin:react/recommended"
-    ]
-  }]
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "no-constant-condition": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended",
+        "plugin:react/recommended"
+      ]
+    }
+  ]
 }

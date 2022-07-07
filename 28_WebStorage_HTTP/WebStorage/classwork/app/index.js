@@ -69,51 +69,51 @@
 const addTodo = document.forms["add-todo"];
 
 class Store {
-	getState(id) {
-		const store = localStorage.getItem(id);
+  getState(id) {
+    const store = localStorage.getItem(id);
 
-		if (!store) {
-			const initStore = {};
+    if (!store) {
+      const initStore = {};
 
-			localStorage.setItem(id, JSON.stringify(initStore));
-			return initStore;
-		}
+      localStorage.setItem(id, JSON.stringify(initStore));
+      return initStore;
+    }
 
-		return JSON.parse(store);
-	}
+    return JSON.parse(store);
+  }
 
-	setState(id, entity) {
-		const state = this.getState(id);
+  setState(id, entity) {
+    const state = this.getState(id);
 
-		localStorage.setItem(id, JSON.stringify({ ...state, [entity.id]: entity }));
-	}
+    localStorage.setItem(id, JSON.stringify({ ...state, [entity.id]: entity }));
+  }
 }
 
 const renderTodo = (value) => {
-	const para = document.createElement("p");
-	para.textContent = value;
+  const para = document.createElement("p");
+  para.textContent = value;
 
-	document.body.append(para);
+  document.body.append(para);
 };
 
 addTodo.addEventListener("submit", (e) => {
-	e.preventDefault();
+  e.preventDefault();
 
-	const { todo, name } = e.target;
+  const { todo, name } = e.target;
 
-	const value = todo.value;
+  const value = todo.value;
 
-	new Store().setState(name, { id: new Date().toTimeString(), text: value });
+  new Store().setState(name, { id: new Date().toTimeString(), text: value });
 
-	renderTodo(value);
+  renderTodo(value);
 
-	e.target.reset();
+  e.target.reset();
 });
 
 const preLoadTodo = (todoList) => {
-	const state = new Store().getState(todoList.name);
+  const state = new Store().getState(todoList.name);
 
-	Object.values(state).forEach(({ text }) => renderTodo(text));
+  Object.values(state).forEach(({ text }) => renderTodo(text));
 };
 
 preLoadTodo(addTodo);

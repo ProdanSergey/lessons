@@ -23,7 +23,7 @@
 2. Примеры ключевых слов?
 3. Почему нельзя использовать ключевые слова в качестве переменных?
 
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
 
 ### Variables
 
@@ -62,8 +62,7 @@
 
 `=, +=, -=, *=, /=, **, ++..., --...`
 
-
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence?retiredLocale=uk#table
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence?retiredLocale=uk#table
 
 ### Dynamic typing
 
@@ -84,7 +83,7 @@
 2. Какие числа используются в JavaScript? (integer, float)
 3. Как задавать данные с типом number?
 4. Явное приведение данных к типу number (+, Number, parseInt, parseFloat)
-5. Неявное приведение данных к типу string (*, /, -)
+5. Неявное приведение данных к типу string (\*, /, -)
 6. -Infinity, Infinity
 7. NaN
 8. -0, 0
@@ -104,4 +103,4 @@
 
 ## Дополнительные материалы
 
-* https://felixgerschau.com/javascript-memory-management/
+- https://felixgerschau.com/javascript-memory-management/

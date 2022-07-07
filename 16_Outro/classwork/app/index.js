@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 // const myFunc = function () {
 // 	// 'use strict'
@@ -77,7 +77,6 @@
 // 			// ... do smt with syntax Erorr
 // 	}
 
-
 // };
 
 // class NotFoundError extends Error {
@@ -114,17 +113,15 @@
 // 	}
 // }
 
-// const repo = new Repository(); 
+// const repo = new Repository();
 
 // console.log(repo.get('fred'));
-
 
 // const handleUserInput = (field, input) => {
 // 	if (input > 500) {
 // 		throw new ValidationError(field);
 // 	}
 // };
-
 
 // let isLoading = false;
 
@@ -140,7 +137,6 @@
 // }
 
 // const FizzBuzz = (() => {
-	
 
 // 	const store = new WeakMap();
 
@@ -150,7 +146,7 @@
 // 		}
 // 	};
 
-// 	class FizzBuzz {	
+// 	class FizzBuzz {
 // 		constructor(logger) {
 // 			this.logger = logger;
 
@@ -164,7 +160,7 @@
 // 		static getVersion() {
 // 			return FizzBuzz.version;
 // 		}
-	
+
 // 		shuffle(num) {
 // 			const { fizzBuzz } = store.get(this);
 // 			fizzBuzz();
@@ -176,14 +172,13 @@
 // 			// 	this.logger('Buzz');
 // 			// 	return;
 // 			// }
-	
+
 // 			this.logger(String(num));
 // 		}
 // 	};
 
 // 	return FizzBuzz;
 // })()
-
 
 // const fizzBuzz = new FizzBuzz(console.log);
 

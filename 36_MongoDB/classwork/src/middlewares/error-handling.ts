@@ -3,30 +3,30 @@ import { BadRequest, NotFoundError } from "../domain/error";
 import { Logger } from "../ports/logger";
 
 const mapErrorToStatus = (err: Error): number => {
-	if (err instanceof BadRequest) {
-		return 400;
-	}
+  if (err instanceof BadRequest) {
+    return 400;
+  }
 
-	if (err instanceof NotFoundError) {
-		return 404;
-	}
+  if (err instanceof NotFoundError) {
+    return 404;
+  }
 
-	return 500;
+  return 500;
 };
 
 export const handleErrorMiddleware = (logger: Logger) => {
-	return (err: Error, _req: Request, res: Response, next: NextFunction) => {
-		const statusCode = mapErrorToStatus(err);
+  return (err: Error, _req: Request, res: Response, next: NextFunction) => {
+    const statusCode = mapErrorToStatus(err);
 
-		res.status(statusCode);
-	
-		logger.alert(err.message, err.name);
+    res.status(statusCode);
 
-		res.json({
-			status: statusCode,
-			message: err.message
-		});
+    logger.alert(err.message, err.name);
 
-		next();
-	};
-}
+    res.json({
+      status: statusCode,
+      message: err.message,
+    });
+
+    next();
+  };
+};

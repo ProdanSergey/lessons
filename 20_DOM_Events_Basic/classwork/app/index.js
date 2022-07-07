@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // const alertButton = document.getElementById("alert-button");
 
@@ -37,7 +37,6 @@
 
 // alertButton.addEventListener("click", handleClick)
 
-
 // const handleClick = function () {
 //   console.log('Button Clicked')
 // }
@@ -53,7 +52,6 @@
 //   const userSection = document.getElementById("user-section");
 
 //   console.log(userSection);
-
 
 //   console.log('content loaded')
 // });
@@ -80,13 +78,13 @@
 
 //     element.removeEventListener("click", handleEvent);
 //   }
-  
+
 //   element.addEventListener("click", handleEvent);
 // };
 
 // const clickTrice = (element, listener) => {
 //   let count = 0;
-  
+
 //   const handleEvent = () => {
 //     listener();
 
@@ -96,7 +94,7 @@
 //       element.removeEventListener("click", handleEvent);
 //     }
 //   }
-  
+
 //   element.addEventListener("click", handleEvent);
 // };
 
@@ -126,7 +124,6 @@
 //   console.log(event);
 // });
 
-
 // const menu = document.querySelector(".menu");
 
 // const handleMenuButton = (menu) => {
@@ -145,15 +142,13 @@
 //   button.addEventListener("click", toggleMenu);
 // };
 
-
 // handleMenuButton(menu);
-
 
 // const listen = (target, eventListener) => { /// { click: (), keyup: () }
 //   const listeners = [];
-  
+
 //   for (const key of Object.keys(eventListener)) { /// ["click", "keyup"]
-//     target.addEventListener(key, eventListener[key]); /// eventListener['click'], eventListener['keyup'], 
+//     target.addEventListener(key, eventListener[key]); /// eventListener['click'], eventListener['keyup'],
 
 //     listeners.push(() => {
 //       target.removeEventListener(key, eventListener[key]);

@@ -16,59 +16,64 @@ import { ListAppointmentCommand } from "../../commands/ListAppointmentsCommand";
 // get "/appointment"
 
 export class AppointmentController {
-	router: Router
+  router: Router;
 
-	constructor(
-		private readonly nodeCliOutput: Logger,
-		private readonly appointmentRepository: AppointmentRepository
-	) {
+  constructor(
+    private readonly nodeCliOutput: Logger,
+    private readonly appointmentRepository: AppointmentRepository
+  ) {
+    this.router = Router({ mergeParams: true });
 
-		this.router = Router({ mergeParams: true });
+    this.router.post("/", route(this.handleCreate));
+    this.router.get("/:id", route(this.handleGet));
+    this.router.get("/", route(this.handleList));
+  }
 
-		this.router.post("/", route(this.handleCreate));
-		this.router.get("/:id", route(this.handleGet));
-		this.router.get("/", route(this.handleList))
-	}
+  process() {
+    return this.router;
+  }
 
-	process() {
-		return this.router;
-	}
+  handleCreate = async (_req: Request, res: Response): Promise<Appointment> => {
+    const appointment = await new CreateAppointmentCommand(
+      this.appointmentRepository
+    ).execute();
 
-	handleCreate = async (_req: Request, res: Response): Promise<Appointment> => {
-		const appointment = await new CreateAppointmentCommand(
-			this.appointmentRepository
-		).execute();
+    const record = Appointment.toRecord(appointment);
 
-		const record = Appointment.toRecord(appointment);
+    this.nodeCliOutput.print(`[${record.id}] has been created`);
 
-		this.nodeCliOutput.print(`[${record.id}] has been created`);
+    res.status(201);
 
-		res.status(201);
+    return appointment;
+  };
 
-		return appointment;
-	}
+  handleGet = async (req: Request<GetParams>): Promise<Appointment> => {
+    const { id } = req.params;
 
-	handleGet = async (req: Request<GetParams>): Promise<Appointment> => {
-		const { id } = req.params;
+    const appointment = await new GetAppointmentCommand(
+      this.appointmentRepository
+    ).execute({
+      id,
+    });
 
-		const appointment = await new GetAppointmentCommand(this.appointmentRepository).execute({
-			id,
-		});
+    const record = Appointment.toRecord(appointment);
 
-		const record = Appointment.toRecord(appointment);
+    this.nodeCliOutput.print(`[${record.id}] has been found`);
 
-		this.nodeCliOutput.print(`[${record.id}] has been found`);
+    return appointment;
+  };
 
-		return appointment;
-	}
+  handleList = async (
+    req: Request<unknown, unknown, unknown, ListQuery>
+  ): Promise<Appointment[]> => {
+    const { completed, limit } = req.query;
 
-	handleList = async (req: Request<unknown, unknown, unknown, ListQuery>): Promise<Appointment[]> => {
-		const { completed, limit } = req.query;
+    const appointments = await new ListAppointmentCommand(
+      this.appointmentRepository
+    ).execute({ completed, limit });
 
-		const appointments = await new ListAppointmentCommand(this.appointmentRepository).execute({ completed, limit});
+    this.nodeCliOutput.print(`[${appointments.length} records] has been found`);
 
-		this.nodeCliOutput.print(`[${appointments.length} records] has been found`);
-
-		return appointments;
-	} 
+    return appointments;
+  };
 }

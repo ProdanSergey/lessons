@@ -1,21 +1,21 @@
 const fetchFakeData = () => {
-	const DATA = {
-		records: [
-			null,
-			{ id: 1, data: "click" },
-			[
-				{ id: 2, data: "buy" },
-				{ id: 3, data: "buy" },
-				{ id: 4, data: "buy" },
-			],
-			null,
-			{ id: 5, data: "click" },
-			null,
-			{ id: 6, data: "click" },
-		],
-	};
+  const DATA = {
+    records: [
+      null,
+      { id: 1, data: "click" },
+      [
+        { id: 2, data: "buy" },
+        { id: 3, data: "buy" },
+        { id: 4, data: "buy" },
+      ],
+      null,
+      { id: 5, data: "click" },
+      null,
+      { id: 6, data: "click" },
+    ],
+  };
 
-	return DATA;
+  return DATA;
 };
 
 // const car = {
@@ -151,49 +151,49 @@ const fetchFakeData = () => {
 const response = fetchFakeData();
 
 const isRecord = (value) => {
-	return typeof value?.id === "number" && typeof value?.data === "string";
+  return typeof value?.id === "number" && typeof value?.data === "string";
 };
 
 const getCurrentState = (targets, index) => {
-	const value = targets[index];
+  const value = targets[index];
 
-	const nextIndex = index + 1;
+  const nextIndex = index + 1;
 
-	if (index > targets.length - 1) {
-		return [true, value, nextIndex];
-	}
+  if (index > targets.length - 1) {
+    return [true, value, nextIndex];
+  }
 
-	if (isRecord(value)) {
-		return [false, value, nextIndex];
-	}
+  if (isRecord(value)) {
+    return [false, value, nextIndex];
+  }
 
-	return getCurrentState(targets, nextIndex);
+  return getCurrentState(targets, nextIndex);
 };
 
 const getIterableRecords = (records) => {
-	return {
-		[Symbol.iterator]() {
-			let elements = [...records];
-			let pointer = 0;
+  return {
+    [Symbol.iterator]() {
+      let elements = [...records];
+      let pointer = 0;
 
-			return {
-				next() {
-					if (Array.isArray(records[pointer])) {
-						elements.splice(pointer, 0, ...records[pointer]);
-					}
+      return {
+        next() {
+          if (Array.isArray(records[pointer])) {
+            elements.splice(pointer, 0, ...records[pointer]);
+          }
 
-					const [done, value, newIndex] = getCurrentState(elements, pointer);
+          const [done, value, newIndex] = getCurrentState(elements, pointer);
 
-					pointer = newIndex;
+          pointer = newIndex;
 
-					return {
-						value,
-						done,
-					};
-				},
-			};
-		},
-	};
+          return {
+            value,
+            done,
+          };
+        },
+      };
+    },
+  };
 };
 
 for (const record of getIterableRecords(response.records)) console.log(record);

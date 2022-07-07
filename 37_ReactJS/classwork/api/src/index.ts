@@ -15,31 +15,42 @@ import { MongoDBAppointmentRepository } from "./adapters/mongo/appointment-repos
 const { PORT } = process.env;
 
 const bootstrap = async (app: express.Express) => {
-	await connect(); // Connection to Mongo Cloud
+  await connect(); // Connection to Mongo Cloud
 
-	const nodeCliOutput = new CLIOutput();
-	const appointmentRepository = new MongoDBAppointmentRepository(AppointmentEntity);
+  const nodeCliOutput = new CLIOutput();
+  const appointmentRepository = new MongoDBAppointmentRepository(
+    AppointmentEntity
+  );
 
-	app.use(cors({
-		origin: ["http://localhost:3030", "http://localhost:8080"],
-		methods: ["GET", "POST", "DELETE", "PUT"]
-	}));
+  app.use(
+    cors({
+      origin: ["http://localhost:3030", "http://localhost:8080"],
+      methods: ["GET", "POST", "DELETE", "PUT"],
+    })
+  );
 
-	app.use(express.json()); // Parse JSON body to object
+  app.use(express.json()); // Parse JSON body to object
 
-	app.use(queryParser({
-    parseNull: true,
-    parseBoolean: true,
-    parseNumber: true
-  })); // Parse Query string to object with casted types
+  app.use(
+    queryParser({
+      parseNull: true,
+      parseBoolean: true,
+      parseNumber: true,
+    })
+  ); // Parse Query string to object with casted types
 
-	app.use("/appointment", new AppointmentController(nodeCliOutput, appointmentRepository).process()); // Handle Request
-	
-	app.use(handleErrorMiddleware(nodeCliOutput)); // handle Error
+  app.use(
+    "/appointment",
+    new AppointmentController(nodeCliOutput, appointmentRepository).process()
+  ); // Handle Request
 
-	app.listen(PORT, () => {
-		nodeCliOutput.print(`Server started successfully, and listening on port: ${PORT}`);
-	});
+  app.use(handleErrorMiddleware(nodeCliOutput)); // handle Error
+
+  app.listen(PORT, () => {
+    nodeCliOutput.print(
+      `Server started successfully, and listening on port: ${PORT}`
+    );
+  });
 };
 
 bootstrap(express());

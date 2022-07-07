@@ -1,10 +1,10 @@
 export enum Markets {
-	FRANCE = "fr",
-	USA = "us",
-	UKRAINE = "ua",
+  FRANCE = "fr",
+  USA = "us",
+  UKRAINE = "ua",
 }
 
 export type MarketStore = {
-	address: string;
-	phone: number;
+  address: string;
+  phone: number;
 };

@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "lint": "npx eslint . --ext .js --ext .jsx --ext .ts --ext .tsx --fix",
+    "format": "prettier --write ."
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",

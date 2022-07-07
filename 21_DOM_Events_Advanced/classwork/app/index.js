@@ -78,7 +78,7 @@ class Table {
       this.count--;
       target.innerText = "";
     } else {
-      this.count++
+      this.count++;
       target.innerText = "X";
     }
 
@@ -98,7 +98,7 @@ class Table {
 
     element.dataset.x = x;
     element.dataset.y = y;
- 
+
     element.classList.add("table__cell");
 
     return element;
@@ -113,7 +113,7 @@ class Table {
 
     for (let y = 0; y < 10; y++) {
       const row = this.renderRow();
-      
+
       for (let x = 0; x < 10; x++) {
         const cell = this.renderCell(x, y);
 

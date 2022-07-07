@@ -5,18 +5,18 @@ import { UserForm } from "./templates/user-form";
 
 const StyledContainer = styled.div`
   padding: 0 16px;
-`
+`;
 
-export const App: FunctionComponent = () => {  
+export const App: FunctionComponent = () => {
   return (
-		<StyledContainer>
-			<header>
-				<h1>React Forms</h1>
-			</header>
-			<main>
+    <StyledContainer>
+      <header>
+        <h1>React Forms</h1>
+      </header>
+      <main>
         <LocationForm />
         <UserForm />
       </main>
-		</StyledContainer>
-	)
+    </StyledContainer>
+  );
 };

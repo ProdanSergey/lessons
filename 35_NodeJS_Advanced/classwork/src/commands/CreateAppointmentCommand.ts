@@ -2,11 +2,11 @@ import { Appointment } from "../domain/appointment";
 import { AppointmentRepository } from "../ports/repositories/appointment";
 
 export class CreateAppointmentCommand {
-	constructor(private readonly appointmentRepository: AppointmentRepository) {}
+  constructor(private readonly appointmentRepository: AppointmentRepository) {}
 
-	async execute(): Promise<Appointment> {
-		const appointment = Appointment.create();
+  async execute(): Promise<Appointment> {
+    const appointment = Appointment.create();
 
-		return this.appointmentRepository.save(appointment);
-	}
+    return this.appointmentRepository.save(appointment);
+  }
 }

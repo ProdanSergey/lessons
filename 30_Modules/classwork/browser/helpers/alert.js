@@ -1,12 +1,12 @@
 const mapToEntry = (message) => ({
-	message,
-	timestamp: new Date().toISOString(),
+  message,
+  timestamp: new Date().toISOString(),
 });
 
 export const alertInfo = (message) => {
-	console.log(mapToEntry(message));
+  console.log(mapToEntry(message));
 };
 
 export const alertWarn = (message) => {
-	console.warn(mapToEntry(message));
+  console.warn(mapToEntry(message));
 };

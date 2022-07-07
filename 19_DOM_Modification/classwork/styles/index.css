@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -12,7 +14,7 @@ body {
   width: 640px;
   height: 480px;
   margin: 0 auto;
-  background-color:darkgoldenrod;
+  background-color: darkgoldenrod;
   overflow: hidden;
 }
 
@@ -25,7 +27,7 @@ body {
 .sc-slider__item {
   flex: 1;
   min-width: 100%;
-  background-color:blueviolet;
+  background-color: blueviolet;
 }
 
 .sc-slider__control {

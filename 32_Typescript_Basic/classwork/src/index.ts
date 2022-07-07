@@ -144,12 +144,12 @@ import { Markets } from "./markets";
 import type { MarketStore } from "./markets";
 
 const getAvailableBooksForUser = (market: Markets) => {
-	return BOOKS[market];
+  return BOOKS[market];
 };
 
 const usaMarketStore: MarketStore = {
-	address: "sdsds",
-	phone: 5552,
+  address: "sdsds",
+  phone: 5552,
 };
 
 console.log(getAvailableBooksForUser(Markets.FRANCE));

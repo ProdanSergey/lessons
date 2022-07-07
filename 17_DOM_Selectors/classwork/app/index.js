@@ -5,7 +5,6 @@
 // console.log('parent', wrapper.parentNode)
 // console.log('parentElement', wrapper.parentElement)
 
-
 // console.log('prev', wrapper.previousElementSibling)
 // console.log('next', wrapper.nextElementSibling)
 
@@ -14,10 +13,8 @@
 
 // const firstWrapperChild = wrapper.firstElementChild;
 
-
 // console.log('FC: parent', firstWrapperChild.parentNode)
 // console.log('FC: parentElement', firstWrapperChild.parentElement)
-
 
 // console.log('FC: prev', firstWrapperChild.previousElementSibling)
 // console.log('FC: next', firstWrapperChild.nextElementSibling)
@@ -33,7 +30,6 @@
 
 // const mBannersCollection = document.body.getElementsByClassName("m-banner");
 // const mBannersNodeList = document.body.querySelectorAll(".m-banner");
-
 
 // Array.prototype.forEach.call(mBannersCollection, (item) => {
 //   console.log(item)
@@ -109,7 +105,6 @@
 
 // const iconWithText = document.querySelector('.icon-with-text');
 
-
 // console.log(window.getComputedStyle(iconWithText));
 
 // @media
@@ -121,16 +116,14 @@
 //   console.log('changed');
 // });
 
-
 // const APP = {
 //   firstName() {},
 //   lastName() {},
 //   age() {}
 // }
 
-
 // const spans = ...
 
 // for (const span of spans) {
-  
+
 // }

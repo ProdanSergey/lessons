@@ -1,15 +1,15 @@
 export abstract class DateHelper {
-	abstract date: Date;
+  abstract date: Date;
 
-	format() {
-		return this.date.toISOString();
-	}
+  format() {
+    return this.date.toISOString();
+  }
 }
 
 export class ISODateHelper extends DateHelper {
-	date = new Date();
+  date = new Date();
 
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 }

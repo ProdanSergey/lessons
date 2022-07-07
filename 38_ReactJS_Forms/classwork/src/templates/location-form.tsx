@@ -11,7 +11,9 @@ export const LocationForm = () => {
     console.log(values);
   };
 
-  const validateLocation: ValidateCallback<LocationFormValues> = (values: LocationFormValues) => {
+  const validateLocation: ValidateCallback<LocationFormValues> = (
+    values: LocationFormValues
+  ) => {
     const errors: ReturnType<ValidateCallback<LocationFormValues>> = {};
 
     if (!values.city.length) {
@@ -22,24 +24,41 @@ export const LocationForm = () => {
   };
 
   return (
-    <Form<LocationFormValues> initialValues={{
-      city: "",
-      region: ""
-    }} onSubmit={sendLocation} validate={validateLocation}>
+    <Form<LocationFormValues>
+      initialValues={{
+        city: "",
+        region: "",
+      }}
+      onSubmit={sendLocation}
+      validate={validateLocation}
+    >
       {({ values, errors, change, submit }) => (
         <form onSubmit={submit}>
           <div>
             <label htmlFor="city">City</label>
-            <input id="city" name="city" type="text" value={values.city} onChange={({ target: { name, value }}) => {
-              change(name, value);
-            }} />
+            <input
+              id="city"
+              name="city"
+              type="text"
+              value={values.city}
+              onChange={({ target: { name, value } }) => {
+                change(name, value);
+              }}
+            />
             {errors.city && <p role="alert">{errors.city}</p>}
           </div>
           <div>
             <label htmlFor="city">Region</label>
-            <input id="region" name="region" type="text" list="region-list" value={values.region} onChange={({ target: { name, value }}) => {
-              change(name, value);
-            }} />
+            <input
+              id="region"
+              name="region"
+              type="text"
+              list="region-list"
+              value={values.region}
+              onChange={({ target: { name, value } }) => {
+                change(name, value);
+              }}
+            />
             <datalist id="region-list">
               <option>North</option>
               <option>Middle East</option>
@@ -52,4 +71,4 @@ export const LocationForm = () => {
       )}
     </Form>
   );
-}
+};

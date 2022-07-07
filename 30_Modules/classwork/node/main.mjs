@@ -4,7 +4,7 @@ alertInfo("Hello Dark Side");
 alertWarn("Node JS is Awesome!");
 
 (async () => {
-	const { run } = await import("./promise.mjs");
+  const { run } = await import("./promise.mjs");
 
-	run();
+  run();
 })();

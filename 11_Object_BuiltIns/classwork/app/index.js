@@ -272,32 +272,32 @@
 // console.log(set === newSet);
 
 let theLordOfTheRings = {
-	author: "J.R.R. Tolkien",
-	title: "The Lord Of The Rings",
-	genre: "fantasy",
+  author: "J.R.R. Tolkien",
+  title: "The Lord Of The Rings",
+  genre: "fantasy",
 };
 
 const theHobbit = {
-	author: "J.R.R. Tolkien",
-	title: "The Hobbit",
-	genre: "fantasy",
+  author: "J.R.R. Tolkien",
+  title: "The Hobbit",
+  genre: "fantasy",
 };
 
 const JRRTolkien = {
-	firstName: "John",
-	middleName: "Ronald",
-	lastName: "Tolkien",
-	origin: "UK",
+  firstName: "John",
+  middleName: "Ronald",
+  lastName: "Tolkien",
+  origin: "UK",
 };
 
 const weakmap = new WeakMap([
-	// ["foo", "bar"],
-	// [1, "one"],
-	// [5, "five"],
-	// [3, "three"],
-	// ["bar", "bar"],
-	[theHobbit, JRRTolkien],
-	[theLordOfTheRings, JRRTolkien],
+  // ["foo", "bar"],
+  // [1, "one"],
+  // [5, "five"],
+  // [3, "three"],
+  // ["bar", "bar"],
+  [theHobbit, JRRTolkien],
+  [theLordOfTheRings, JRRTolkien],
 ]);
 
 // no size

@@ -4,14 +4,14 @@ import Cart from "../icons/cart.svg";
 import { StyledButton, StyledIndicator } from "./cart.styled";
 
 type ShopCartProps = {
-	items: Product[];
+  items: Product[];
 };
 
 export const ShopCart: FunctionComponent<ShopCartProps> = ({ items }) => {
-	return (
-		<StyledButton>
-			<Cart width="2em" height="2em" />
-			<StyledIndicator>{items.length}</StyledIndicator>
-		</StyledButton>
-	);
+  return (
+    <StyledButton>
+      <Cart width="2em" height="2em" />
+      <StyledIndicator>{items.length}</StyledIndicator>
+    </StyledButton>
+  );
 };

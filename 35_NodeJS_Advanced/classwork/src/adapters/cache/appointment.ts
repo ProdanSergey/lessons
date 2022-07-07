@@ -1,62 +1,67 @@
 import { isUndefined } from "lodash";
 import { Appointment, AppointmentId } from "../../domain/appointment";
 import { NotFoundError } from "../../domain/error";
-import { AppointmentRepository, FindManyFilter } from "../../ports/repositories/appointment";
+import {
+  AppointmentRepository,
+  FindManyFilter,
+} from "../../ports/repositories/appointment";
 
 type Store = Map<AppointmentId, Appointment>;
 
 export class InMemoryAppointmentRepository implements AppointmentRepository {
-	store: Store;
-	
-	constructor() {
-		this.store = new Map();
-	}
-	
-	async save(appointment: Appointment): Promise<Appointment> {
-		this.store.set(appointment.id, appointment);
+  store: Store;
 
-		return appointment;
-	}
+  constructor() {
+    this.store = new Map();
+  }
 
-	async findOne(id: string): Promise<Appointment | undefined> {
-		const appointment = this.store.get(id);
-		
-		if (!appointment) {
-			return undefined;
-		}
+  async save(appointment: Appointment): Promise<Appointment> {
+    this.store.set(appointment.id, appointment);
 
-		return appointment;
-	}
+    return appointment;
+  }
 
-	async findMany({ completed, limit }: FindManyFilter): Promise<Appointment[]> {
-		let appointments = Array.from(this.store.values());
+  async findOne(id: string): Promise<Appointment | undefined> {
+    const appointment = this.store.get(id);
 
-		if (!isUndefined(completed)) {
-			appointments = appointments.filter(record => record.completed === completed);
-		}
+    if (!appointment) {
+      return undefined;
+    }
 
-		if (!isUndefined(limit) && isFinite(limit)) {
-			appointments = appointments.slice(0, limit);
-		}
+    return appointment;
+  }
 
-		return appointments;
-	}
+  async findMany({ completed, limit }: FindManyFilter): Promise<Appointment[]> {
+    let appointments = Array.from(this.store.values());
 
-	async update(appointment: Appointment): Promise<Appointment> {
-		if (!this.store.has(appointment.id)) {
-			throw new NotFoundError();
-		}
+    if (!isUndefined(completed)) {
+      appointments = appointments.filter(
+        (record) => record.completed === completed
+      );
+    }
 
-		this.store.set(appointment.id, appointment);
+    if (!isUndefined(limit) && isFinite(limit)) {
+      appointments = appointments.slice(0, limit);
+    }
 
-		return appointment;
-	}
-	
-	async remove(id: string): Promise<void> {
-		if (!this.store.has(id)) {
-			throw new NotFoundError();
-		}
+    return appointments;
+  }
 
-		this.store.delete(id);
-	}
+  async update(appointment: Appointment): Promise<Appointment> {
+    if (!this.store.has(appointment.id)) {
+      throw new NotFoundError();
+    }
+
+    this.store.set(appointment.id, appointment);
+
+    return appointment;
+  }
+
+  async remove(id: string): Promise<void> {
+    if (!this.store.has(id)) {
+      throw new NotFoundError();
+    }
+
+    this.store.delete(id);
+  }
 }

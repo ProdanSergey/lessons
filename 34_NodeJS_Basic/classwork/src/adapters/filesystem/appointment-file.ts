@@ -18,7 +18,9 @@ export class AppointmentFile implements File<Appointment> {
     const files = await readdir(AppointmentFile.DIRECTORY);
 
     for (const fileName of files) {
-      const { ctimeMs } = await stat(`${AppointmentFile.DIRECTORY}/${fileName}`);
+      const { ctimeMs } = await stat(
+        `${AppointmentFile.DIRECTORY}/${fileName}`
+      );
 
       if (dayjs(ctimeMs).isAfter(dayjs().startOf("d"))) {
         return new AppointmentFile(fileName);
@@ -39,7 +41,10 @@ export class AppointmentFile implements File<Appointment> {
     return readFile(`${AppointmentFile.DIRECTORY}/${fileName}`, "utf-8");
   }
 
-  private static async writeStore(fileName: string, content: string): Promise<void> {
+  private static async writeStore(
+    fileName: string,
+    content: string
+  ): Promise<void> {
     await writeFile(`${AppointmentFile.DIRECTORY}/${fileName}`, content);
   }
 

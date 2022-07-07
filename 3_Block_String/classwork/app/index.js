@@ -8,12 +8,9 @@
 
 // console.log('-------');
 
-// Expression 
+// Expression
 
-
-
-
-// 
+//
 
 // var firstName;
 // var lastName;
@@ -22,7 +19,7 @@
 
 // console.log(fullName);
 
-console.log('-------');
+console.log("-------");
 
 // var isFirstNameAvailable = false;
 // var isLastNameAvailable = true;
@@ -51,7 +48,7 @@ console.log('-------');
 
 // const example = 'global variable'; // A001
 
-// {	
+// {
 // 	const example = 'first level variable'; // A002
 
 // 	example = 'new value'
@@ -60,19 +57,18 @@ console.log('-------');
 
 // 	{
 // 		const example = 'second level variable'; // A003
-	
+
 // 		console.log(example);
 // 	}
 // }
 
 // console.log(example);
 
-console.log('-------');
+console.log("-------");
 
 // const CURRENT_YEAR = 2022;
 
 // const birthday_year = prompt();
-
 
 // const userRole = 'USER';
 
@@ -82,7 +78,7 @@ console.log('-------');
 // 	case 'ADMIN':
 // 		userAction = 'observe';
 // 		break;
-// 	case 'USER': 
+// 	case 'USER':
 // 		userAction = 'do';
 // 	default:
 // 		break;
@@ -94,7 +90,7 @@ console.log('-------');
 // 	let really = 'O.o';
 // }
 
-const randomText = 'How much is the fish?!';
+const randomText = "How much is the fish?!";
 
 console.log(randomText.length);
 console.log(randomText[2]);
@@ -121,7 +117,7 @@ console.log(randomText[randomText.length - 1]);
 
 // console.log(template);
 
-let stringExample = 'Yellow Submarine';
+let stringExample = "Yellow Submarine";
 
 // console.log(stringExample.toLowerCase());
 // console.log(stringExample.toUpperCase());
@@ -167,6 +163,6 @@ let stringExample = 'Yellow Submarine';
 // 	console.log(stringExample[index]);
 // }
 
-stringExample = 'How mach is the fish?';
+stringExample = "How mach is the fish?";
 
-console.log(stringExample.includes('!'));
+console.log(stringExample.includes("!"));

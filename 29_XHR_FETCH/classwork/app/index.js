@@ -237,13 +237,13 @@
 // ac.abort();
 
 const request = async () => {
-	return fetch();
+  return fetch();
 };
 
 const getAllTodos = async () => {
-	const todos = await request("url");
+  const todos = await request("url");
 
-	return todos;
+  return todos;
 };
 
 const getTodoById = async (id) => {};
@@ -253,52 +253,54 @@ const setTodoById = () => {};
 const deleteTodoByIs = () => {};
 
 const renderLoader = () => {
-	const div = "<div>Loading...</div>";
+  const div = "<div>Loading...</div>";
 
-	return div;
+  return div;
 };
 
 const renderTodoTask = (todo) => {
   const todoItem = `<div></div>`;
 
-  const deleteIcon = `<button><p>-</p></button>`
+  const deleteIcon = `<button><p>-</p></button>`;
 
- deleteIcon.addEventListener("click", () => {
-  todoItem.dispatchEvent(new CustomEvent("todo:delete", {
-    detail: todo.id,
-    bubbles: true
-  }))
- });
+  deleteIcon.addEventListener("click", () => {
+    todoItem.dispatchEvent(
+      new CustomEvent("todo:delete", {
+        detail: todo.id,
+        bubbles: true,
+      })
+    );
+  });
 
   todoItem.append(deleteIcon);
-}
+};
 
 const renderTodoList = () => {
-	const todoList = new TodoList();
+  const todoList = new TodoList();
 
   const findTodoByIdInTodoList = (id) => {
-    return Array.from(todoList.children).find(item => item.id === id);
+    return Array.from(todoList.children).find((item) => item.id === id);
   };
 
   const makemakeItemDisabled = (item) => {
     item.classList.add("disabled");
-  }
+  };
 
-	todoList.addEventListener("submit", async (event) => {
-		const newTodo = { id: 22, value: event.target.value };
+  todoList.addEventListener("submit", async (event) => {
+    const newTodo = { id: 22, value: event.target.value };
 
-		const skeleton = renderTodoSkeleton();
+    const skeleton = renderTodoSkeleton();
 
-		todoList.append(skeleton);
+    todoList.append(skeleton);
 
-		const todo = await setTodoById(newTodo);
+    const todo = await setTodoById(newTodo);
 
-		todoList.replaceChild(skeleton, renderTodoTask(todo));
-	});
+    todoList.replaceChild(skeleton, renderTodoTask(todo));
+  });
 
   todoList.addEventListener("todo:delete", async (event) => {
     const toDelete = event.target.detail;
-    
+
     const item = findTodoByIdInTodoList(toDelete);
 
     makeItemDisabled(item);
@@ -312,9 +314,9 @@ const renderTodoList = () => {
 };
 
 const bootstrap = async () => {
-	document.body.append(renderLoader());
-	const todoData = await getAllTodos();
-	document.body.replaceChildren(renderTodoList(todoData));
+  document.body.append(renderLoader());
+  const todoData = await getAllTodos();
+  document.body.replaceChildren(renderTodoList(todoData));
 };
 
 bootstrap();

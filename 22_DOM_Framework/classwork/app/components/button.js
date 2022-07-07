@@ -1,7 +1,7 @@
 class Button extends BaseComponent {
-	render() {
-		const { text } = this.props;
+  render() {
+    const { text } = this.props;
 
-		return Framework.create("button", {}, [text]);
-	}
+    return Framework.create("button", {}, [text]);
+  }
 }

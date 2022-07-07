@@ -8,12 +8,12 @@
 
 // const heading = document.body.querySelector(".app-dialog__header h2")
 
-class DOMError extends Error {};
+class DOMError extends Error {}
 
 class BaseComponent {
   constructor(container, props = {}) {
     if (!(container instanceof HTMLElement)) {
-      throw new DOMError('Container not found');
+      throw new DOMError("Container not found");
     }
 
     this.container = container;
@@ -41,7 +41,7 @@ class TabsComponent extends BaseComponent {
   }
 
   initHeader({ children }) {
-    this.header =  children;
+    this.header = children;
 
     for (const action of this.header) {
       const index = this.indexOf(this.header, action);
@@ -72,7 +72,7 @@ class TabsComponent extends BaseComponent {
     const className = "sc-tabs-active";
 
     if (this.state.activeIndex === Number(item.dataset.index)) {
-      item.classList.add(className)
+      item.classList.add(className);
     } else {
       item.classList.remove(className);
     }
@@ -88,10 +88,9 @@ class TabsComponent extends BaseComponent {
 
       this.setActiveRegion(region);
 
-      region.id = `tab-${index}`
+      region.id = `tab-${index}`;
       region.setAttribute("role", "region");
-      region.setAttribute("aria-label", `purple tab`)
-      
+      region.setAttribute("aria-label", `purple tab`);
     }
   }
 
@@ -115,14 +114,10 @@ class TabsComponent extends BaseComponent {
 }
 
 const tabs = new TabsComponent(document.querySelector(".app-tabs"), {
-  onReject: () => {
-
-  },
-  onSubmit: () => {
-
-  },
+  onReject: () => {},
+  onSubmit: () => {},
 });
 
-onclick // Когда курсор мышки кликнул по элементу
-onmouseover // Когда курсор мышки пересек границу элемента
-onmouseleave // Когда курсор мышки покинул границу элемента
+onclick; // Когда курсор мышки кликнул по элементу
+onmouseover; // Когда курсор мышки пересек границу элемента
+onmouseleave; // Когда курсор мышки покинул границу элемента

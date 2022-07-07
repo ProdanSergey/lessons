@@ -1,7 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const createStyledComponentsTransformer = require("typescript-plugin-styled-components").default;
+const createStyledComponentsTransformer =
+  require("typescript-plugin-styled-components").default;
 const CopyPlugin = require("copy-webpack-plugin");
 
 const styledComponentsTransformer = createStyledComponentsTransformer();
@@ -92,7 +93,10 @@ module.exports = (env) => {
         }),
       new CopyPlugin({
         patterns: [
-          { from: path.resolve(__dirname, "public", "assets"), to: path.resolve(__dirname, "dist", "assets") },
+          {
+            from: path.resolve(__dirname, "public", "assets"),
+            to: path.resolve(__dirname, "dist", "assets"),
+          },
         ],
       }),
       new HtmlWebpackPlugin({

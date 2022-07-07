@@ -5,16 +5,16 @@ import { mapLocaleIcon } from "../shared/localization/helpers/locale";
 import { StyledLink } from "./locale.styled";
 
 const toggleLocale = (locale: AvailableLocale): AvailableLocale => {
-	if (locale === "en-GB") return "uk-UA";
-	return "en-GB";
+  if (locale === "en-GB") return "uk-UA";
+  return "en-GB";
 };
 
 export const Locale: FunctionComponent = () => {
-	const { locale } = useContext(InternalizationContext);
+  const { locale } = useContext(InternalizationContext);
 
-	return (
-		<StyledLink href={window.location.origin + "/" + toggleLocale(locale)}>
-			{mapLocaleIcon(locale)}
-		</StyledLink>
-	);
+  return (
+    <StyledLink href={window.location.origin + "/" + toggleLocale(locale)}>
+      {mapLocaleIcon(locale)}
+    </StyledLink>
+  );
 };

@@ -123,14 +123,14 @@
 // * ReturnType
 
 enum DocumentCategory {
-	PERSONAL = "personal",
-	BUSINESS = "business",
+  PERSONAL = "personal",
+  BUSINESS = "business",
 }
 
 type DocumentItem = {
-	name: string;
-	size: number;
-	category: DocumentCategory;
+  name: string;
+  size: number;
+  category: DocumentCategory;
 };
 
 type WeekDocumentItem = Partial<DocumentItem>;
@@ -138,30 +138,30 @@ type WeekDocumentItem = Partial<DocumentItem>;
 type StrongDocumentItem = Required<WeekDocumentItem>;
 
 const Docs: Record<string, DocumentItem> = {
-	"111": {
-		name: "cv.pdf",
-		size: 1000 * 24,
-		category: DocumentCategory.PERSONAL,
-	},
-	"222": {
-		name: "annual-plan.doc",
-		size: 1000 * 24,
-		category: DocumentCategory.BUSINESS,
-	},
+  "111": {
+    name: "cv.pdf",
+    size: 1000 * 24,
+    category: DocumentCategory.PERSONAL,
+  },
+  "222": {
+    name: "annual-plan.doc",
+    size: 1000 * 24,
+    category: DocumentCategory.BUSINESS,
+  },
 };
 
 const sizeDocument = (
-	document: DocumentItem
+  document: DocumentItem
 ): Omit<DocumentItem, "name" | "category"> => {
-	const { size } = document;
+  const { size } = document;
 
-	return { size };
+  return { size };
 };
 
 const nameDocument = (document: DocumentItem): Pick<DocumentItem, "name"> => {
-	const { name } = document;
+  const { name } = document;
 
-	return { name };
+  return { name };
 };
 
 type OnlySizeDocument = ReturnType<typeof sizeDocument>;

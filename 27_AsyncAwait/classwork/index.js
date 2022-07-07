@@ -225,65 +225,65 @@
 // })();
 
 const sleep = (timeout) => {
-	return new Promise((resolve) => {
-		setTimeout(resolve, timeout);
-	});
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+  });
 };
 
 function getRandomIntInclusive(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 
 const verifyClient = async () => {
-	await sleep(2000);
+  await sleep(2000);
 
-	return Boolean(getRandomIntInclusive(0, 1));
+  return Boolean(getRandomIntInclusive(0, 1));
 };
 
 const clients = [
-	{ id: 1, name: "Bob" },
-	{ id: 2, name: "John" },
+  { id: 1, name: "Bob" },
+  { id: 2, name: "John" },
 ];
 
 const getClient = async (id) => {
-	await sleep(2000);
+  await sleep(2000);
 
-	return clients.find((client) => client.id === id);
+  return clients.find((client) => client.id === id);
 };
 
 const App = () => {
-	const ids = [1, 2];
+  const ids = [1, 2];
 
-	const all = async () => {
-		const start = new Date().getTime();
-		const clients = await Promise.all(ids.map((id) => getClient(id)));
+  const all = async () => {
+    const start = new Date().getTime();
+    const clients = await Promise.all(ids.map((id) => getClient(id)));
 
-		const clientResults = await Promise.all(
-			clients.map((client) => verifyClient(client))
-		);
+    const clientResults = await Promise.all(
+      clients.map((client) => verifyClient(client))
+    );
 
-		console.log(clientResults, new Date().getTime() - start);
-	};
+    console.log(clientResults, new Date().getTime() - start);
+  };
 
-	const each = async () => {
-		const start = new Date().getTime();
+  const each = async () => {
+    const start = new Date().getTime();
 
-		for (const id of [1, 2]) {
-			const client = await getClient(id);
+    for (const id of [1, 2]) {
+      const client = await getClient(id);
 
-			const result = await verifyClient(client);
+      const result = await verifyClient(client);
 
-			console.log(result);
-		}
+      console.log(result);
+    }
 
-		console.log(new Date().getTime() - start);
-	};
+    console.log(new Date().getTime() - start);
+  };
 
-	all();
+  all();
 
-	each();
+  each();
 };
 
 App();

@@ -1,5 +1,6 @@
 const FRAMEWORK_UTILS = (() => {
-  const isObject = (v) => typeof v === "object" && !Array.isArray(v) && v !== null;
+  const isObject = (v) =>
+    typeof v === "object" && !Array.isArray(v) && v !== null;
   const isFunction = (v) => typeof v === "function";
   const isString = (v) => typeof v === "string";
 
@@ -47,10 +48,20 @@ const FRAMEWORK_UTILS = (() => {
       return target;
     }
 
-    return Array.from(target).reduce((acc, char) => (acc + isLowerCase(char) ? char : "-" + char.toLowerCase()), "");
+    return Array.from(target).reduce(
+      (acc, char) =>
+        acc + isLowerCase(char) ? char : "-" + char.toLowerCase(),
+      ""
+    );
   };
 
   return {
-    isObject, isFunction, isString, forEach, capitalize, snakeToCamel, camelToSnake
-  }
+    isObject,
+    isFunction,
+    isString,
+    forEach,
+    capitalize,
+    snakeToCamel,
+    camelToSnake,
+  };
 })();

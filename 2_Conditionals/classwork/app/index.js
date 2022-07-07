@@ -9,7 +9,7 @@ pos = "1:1:0";
 lastName = undefined;
 // lastName = void 0;
 
-console.log(lastName)
+console.log(lastName);
 
 // null
 
@@ -30,7 +30,7 @@ console.log(typeof null);
 
 var isActive = false;
 
-console.log(isActive)
+console.log(isActive);
 
 isActive = true;
 
@@ -42,13 +42,13 @@ console.log(Boolean(isActive));
 
 console.log(Boolean(" "));
 
-console.log('-----------');
+console.log("-----------");
 
 var userCount = 2;
 
 console.log(!userCount);
 
-console.log('-----------');
+console.log("-----------");
 
 // >, <, >=, <=, ==, ===, !=, !==
 
@@ -57,7 +57,7 @@ var annyApples = 10;
 
 console.log(johnApples <= annyApples);
 
-console.log('-----------');
+console.log("-----------");
 
 console.log(1 === Number("1"));
 console.log(1 !== 1);
@@ -69,14 +69,14 @@ console.log(0 || "John");
 console.log("apple" || "orange");
 console.log(0 || false);
 
-console.log('-----------');
+console.log("-----------");
 
 console.log(0 && "John");
 console.log("apple" && "orange");
 console.log(0 && false);
 console.log("0" && "");
 
-console.log('-----------');
+console.log("-----------");
 
 console.log("1" || 1 || false);
 console.log(undefined || 0 || "1");
@@ -84,26 +84,27 @@ console.log(null || 5 || undefined);
 console.log("" || 0 || NaN);
 console.log(void 0 || -1 || true);
 
-console.log('-----------');
+console.log("-----------");
 
 console.log(5 && "5" && -1);
 console.log(-1 && 25 && null && "john");
 console.log("0" && 0 && "hallo world" && false);
 
-console.log('-----------');
+console.log("-----------");
 
-console.log(5 || false && "5");
-console.log(5 || (false || 25));
-console.log("" || (false || 25));
+console.log(5 || (false && "5"));
+console.log(5 || false || 25);
+console.log("" || false || 25);
 console.log("" || (false && 25));
 
-console.log('-----------');
+console.log("-----------");
 
 var isUserAuthenticatedToPerformeALoggin = true;
 
-isUserAuthenticatedToPerformeALoggin && console.log('2000 lines of to logging to my site');
+isUserAuthenticatedToPerformeALoggin &&
+  console.log("2000 lines of to logging to my site");
 
-console.log('-----------');
+console.log("-----------");
 
 // ??
 // console.log("" ?? "dsds");
@@ -142,7 +143,7 @@ console.log('-----------');
 // 		// permission === 'ADMIN'
 // 		case 'ADMIN': {
 // 			var count = 2;
-			
+
 // 			if (count > 3) {
 // 				break;
 // 			}

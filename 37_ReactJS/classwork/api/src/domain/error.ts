@@ -1,9 +1,9 @@
 export class BadRequest extends Error {
-	name = "BadRequest";
+  name = "BadRequest";
 }
 
 export class NotFoundError extends Error {
-	constructor() {
-		super("Not Found");
-	}
+  constructor() {
+    super("Not Found");
+  }
 }

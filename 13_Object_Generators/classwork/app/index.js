@@ -311,11 +311,11 @@
 // };
 
 const actionGenerator = function* () {
-	const loadingState = yield "http://example.com";
+  const loadingState = yield "http://example.com";
 
-	const data = yield;
+  const data = yield;
 
-	console.log(data);
+  console.log(data);
 };
 
 const generator = actionGenerator();

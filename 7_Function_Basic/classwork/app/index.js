@@ -104,11 +104,11 @@
 // console.loh(myConst);
 
 const carFabric = function (vendor, model, year) {
-	return {
-		vendor: vendor,
-		model: model,
-		year: year,
-	};
+  return {
+    vendor: vendor,
+    model: model,
+    year: year,
+  };
 };
 
 const teslaX = carFabric("Tesla", "ModelX", "2019");

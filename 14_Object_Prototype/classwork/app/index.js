@@ -52,27 +52,27 @@
 // }
 
 function CocaColaCompany(volume) {
-	CocaColaCompany.invocations += 1;
+  CocaColaCompany.invocations += 1;
 
-	this.volume = volume;
+  this.volume = volume;
 }
 
 CocaColaCompany.prototype.establish = "1800";
 
 CocaColaCompany.prototype.drink = function () {
-	console.log("mmmm yammu");
-	console.log("I drunk", this.volume);
+  console.log("mmmm yammu");
+  console.log("I drunk", this.volume);
 };
 
 CocaColaCompany.version = "1.1.0";
 CocaColaCompany.invocations = 0;
 
 CocaColaCompany.info = function () {
-	return {
-		version: CocaColaCompany.version,
-		author: "John Doe",
-		invocations: CocaColaCompany.invocations,
-	};
+  return {
+    version: CocaColaCompany.version,
+    author: "John Doe",
+    invocations: CocaColaCompany.invocations,
+  };
 };
 
 const cocaCola = new CocaColaCompany(0.5);
@@ -96,82 +96,82 @@ const info = CocaColaCompany.info();
 // makeASip(fake);
 
 function Gadget(params) {
-	Object.assign(this, params);
+  Object.assign(this, params);
 }
 
 Gadget.prototype.heathCheck = function () {
-	console.log(`run a heath check.... on ${this.title}`);
+  console.log(`run a heath check.... on ${this.title}`);
 
-	setTimeout(() => {
-		console.log(`Done.... Health on ${this.title} 100%`);
-	}, 1000);
+  setTimeout(() => {
+    console.log(`Done.... Health on ${this.title} 100%`);
+  }, 1000);
 };
 Gadget.prototype.install = function () {
-	console.log(
-		`Ask your ${this.vendor} for a help`,
-		"I have no specific app to get a software"
-	);
+  console.log(
+    `Ask your ${this.vendor} for a help`,
+    "I have no specific app to get a software"
+  );
 };
 
 Object.defineProperty(Gadget.prototype, "title", {
-	get: function () {
-		return this.vendor + " " + this.model;
-	},
-	set: function (value) {
-		const [vendor, model] = value.split(" ");
+  get: function () {
+    return this.vendor + " " + this.model;
+  },
+  set: function (value) {
+    const [vendor, model] = value.split(" ");
 
-		this.vendor = vendor;
-		this.model = model;
+    this.vendor = vendor;
+    this.model = model;
 
-		// eslint-disable-next-line no-setter-return
-		return true;
-	},
+    // eslint-disable-next-line no-setter-return
+    return true;
+  },
 });
 
 function Laptop(params) {
-	Gadget.call(this, params);
-	this.type = "notebooks";
+  Gadget.call(this, params);
+  this.type = "notebooks";
 }
 
 Laptop.prototype = Object.create(Gadget.prototype);
 Laptop.prototype.constructor = Laptop;
 
 function Desktop(params) {
-	Gadget.call(this, params);
-	this.type = "desktop";
+  Gadget.call(this, params);
+  this.type = "desktop";
 }
 
 Desktop.prototype = Object.create(Gadget.prototype);
 Desktop.prototype.constructor = Desktop;
 
 function Smartphone(params) {
-	Gadget.call(this, params);
-	this.type = "smartphone";
+  Gadget.call(this, params);
+  this.type = "smartphone";
 }
 
 Smartphone.prototype = Object.create(Gadget.prototype);
 Smartphone.prototype.constructor = Smartphone;
 
 Smartphone.prototype.install = function () {
-	console.log(`Install from Google Play Market`);
+  console.log(`Install from Google Play Market`);
 };
 
 const lenovo = new Laptop({
-	vendor: "Lenovo",
-	model: "XPSF23-123",
-	version: "10.11.1",
+  vendor: "Lenovo",
+  model: "XPSF23-123",
+  version: "10.11.1",
 });
 
 const dell = new Desktop({
-	vendor: "Dell",
-	model: "BGs-2Dx",
-	version: "5.11.1",
+  vendor: "Dell",
+  model: "BGs-2Dx",
+  version: "5.11.1",
 });
 
 const xiaomy = new Smartphone({
-	vendor: "Xioamy",
-	model: "i10",
-	version: "8.11.1",
+  vendor: "Xioamy",
+  model: "i10",
+  version: "8.11.1",
 });
 
 lenovo.install();

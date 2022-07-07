@@ -1,6 +1,6 @@
 class Framework {
   static mount(root, component) {
-    root.replaceChildren(component.render())
+    root.replaceChildren(component.render());
   }
 }
 
@@ -30,7 +30,7 @@ class BaseComponent {
 
   setAttributes(attributes = {}) {
     for (const key of Object.keys(attributes)) {
-      this.element[key] = attributes[key]
+      this.element[key] = attributes[key];
     }
 
     return this.element.attributes;
@@ -39,7 +39,7 @@ class BaseComponent {
   setChildren(children = []) {
     for (const child of children) {
       if (typeof child === "string") {
-        this.element.insertAdjacentHTML("afterbegin", child)
+        this.element.insertAdjacentHTML("afterbegin", child);
       } else this.element.append(child.render());
     }
 
@@ -58,8 +58,8 @@ class ImageComponent extends BaseComponent {
     super("img", props, {
       attributes: {
         src,
-        title: "slider image"
-      }
+        title: "slider image",
+      },
     });
   }
 }
@@ -70,9 +70,9 @@ class SliderItemComponent extends BaseComponent {
 
     super("div", props, {
       attributes: {
-        className: ["sc-slider__item"]
+        className: ["sc-slider__item"],
       },
-      children: [item]
+      children: [item],
     });
   }
 }
@@ -83,13 +83,13 @@ class SliderControlComponent extends BaseComponent {
 
     super("button", props, {
       styles: {
-        [position]: 0
+        [position]: 0,
       },
       attributes: {
         onclick: onClick,
-        className: ["sc-slider__control"]
+        className: ["sc-slider__control"],
       },
-      children: [icon]
+      children: [icon],
     });
   }
 }
@@ -100,29 +100,32 @@ class SliderTrackComponent extends BaseComponent {
 
     super("div", props, {
       attributes: {
-        className: ["sc-slider__track"]
+        className: ["sc-slider__track"],
       },
-      children: items.map(src => new SliderItemComponent({
-        item: new ImageComponent({ src })
-      }))
-    })
+      children: items.map(
+        (src) =>
+          new SliderItemComponent({
+            item: new ImageComponent({ src }),
+          })
+      ),
+    });
   }
 }
 
 const SliderComponent = (() => {
   const parseOffset = (track, px = false) => {
     const offset = parseInt(track.style.marginLeft) || 0;
-    
+
     return px ? CSS.px(offset) : offset;
   };
 
   const isAtFirst = (track) => {
     return parseOffset(track) === 0;
-  }
+  };
 
   const isAtLast = (track, length) => {
     return parseOffset(track) === track.clientWidth * (length - 1) * -1;
-  }
+  };
 
   class SliderComponent extends BaseComponent {
     constructor(props) {
@@ -130,57 +133,73 @@ const SliderComponent = (() => {
 
       super("div", props, {
         attributes: {
-          className: ["sc-slider"]
+          className: ["sc-slider"],
         },
         children: [
-          new SliderControlComponent({ icon: "<", position: "left", onClick: () => {
-            this.prev()
-          } }),
+          new SliderControlComponent({
+            icon: "<",
+            position: "left",
+            onClick: () => {
+              this.prev();
+            },
+          }),
           new SliderTrackComponent({ items }),
-          new SliderControlComponent({ icon: ">", position: "right", onClick: () => {
-            this.next()
-          } }),
-        ]
-      });    
+          new SliderControlComponent({
+            icon: ">",
+            position: "right",
+            onClick: () => {
+              this.next();
+            },
+          }),
+        ],
+      });
 
       this.track = this.element.querySelector(".sc-slider__track");
     }
 
     to(nth) {
-      debugger
+      debugger;
       if (nth < 1) nth = 1;
       if (nth > this.props.items.length) nth = this.props.items.length;
 
-      this.track.style.marginLeft = CSS.px((this.track.clientWidth * (nth - 1)) * -1);
+      this.track.style.marginLeft = CSS.px(
+        this.track.clientWidth * (nth - 1) * -1
+      );
     }
-  
+
     toFirst() {
       this.track.style.marginLeft = 0;
     }
-  
+
     prev() {
       const prev = () => {
-        this.track.style.marginLeft = parseOffset(this.track, true).add(CSS.px(this.track.clientWidth));
-      }
-  
+        this.track.style.marginLeft = parseOffset(this.track, true).add(
+          CSS.px(this.track.clientWidth)
+        );
+      };
+
       isAtFirst(this.track) ? this.toLast() : prev();
     }
-  
+
     toLast() {
-      this.track.style.marginLeft = CSS.px(this.track.clientWidth * (this.props.items.length - 1) * -1);
+      this.track.style.marginLeft = CSS.px(
+        this.track.clientWidth * (this.props.items.length - 1) * -1
+      );
     }
-  
+
     next() {
       const next = () => {
-        this.track.style.marginLeft = parseOffset(this.track, true).sub(CSS.px(this.track.clientWidth));
-      }
-  
+        this.track.style.marginLeft = parseOffset(this.track, true).sub(
+          CSS.px(this.track.clientWidth)
+        );
+      };
+
       isAtLast(this.track, this.props.items.length) ? this.toFirst() : next();
     }
   }
 
   return SliderComponent;
-})()
+})();
 
 const images = [
   "https://picsum.photos/640/480?random=1",

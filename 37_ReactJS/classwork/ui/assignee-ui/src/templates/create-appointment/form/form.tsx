@@ -1,102 +1,125 @@
-import React, { ChangeEventHandler, FormEventHandler, FunctionComponent, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  FormEventHandler,
+  FunctionComponent,
+  useState,
+} from "react";
 import validator from "validator";
 
-import { StyledError, StyledField, StyledForm, StyledInput, StyledLabel } from "./form.styled";
+import {
+  StyledError,
+  StyledField,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+} from "./form.styled";
 
 type CreateAppointmentFormProps = {
-	onFormSubmit: (values: FormValues) => void;
-}
+  onFormSubmit: (values: FormValues) => void;
+};
 
 export type FormValues = {
-	fullName: string;
-	email: string;
+  fullName: string;
+  email: string;
 };
 
 export type FormErrors = {
-	fullName: boolean;
-	email: boolean;
+  fullName: boolean;
+  email: boolean;
 };
 
 const hasError = (errors: FormErrors): boolean => {
-	return Object.keys(errors).some((key) => errors[key as keyof FormErrors]);
-}
+  return Object.keys(errors).some((key) => errors[key as keyof FormErrors]);
+};
 
-type Validator = (values: FormValues) => boolean; 
+type Validator = (values: FormValues) => boolean;
 
 const validators: Record<keyof FormValues, Validator> = {
-	fullName: ({ fullName }) => fullName.length > 0,
-	email: ({ email }) => validator.isEmail(email),
+  fullName: ({ fullName }) => fullName.length > 0,
+  email: ({ email }) => validator.isEmail(email),
 };
 
 const mapErrors = (values: FormValues): FormErrors => {
-	const keys = Object.keys(values);
+  const keys = Object.keys(values);
 
-	return keys.reduce(
-		(errors: FormErrors, key: string) => {
-			const validator = validators[key as keyof FormValues];
+  return keys.reduce((errors: FormErrors, key: string) => {
+    const validator = validators[key as keyof FormValues];
 
-			return {
-				...errors,
-				[key as keyof FormErrors]: !validator(values)
-			}
-		}
-	, {} as FormErrors);
-}
+    return {
+      ...errors,
+      [key as keyof FormErrors]: !validator(values),
+    };
+  }, {} as FormErrors);
+};
 
-export const CreateAppointmentForm: FunctionComponent<CreateAppointmentFormProps> = ({ onFormSubmit }) => {
-	const [values, setValue] = useState<FormValues>({
-		fullName: "",
-		email: ""
-	});
+export const CreateAppointmentForm: FunctionComponent<
+  CreateAppointmentFormProps
+> = ({ onFormSubmit }) => {
+  const [values, setValue] = useState<FormValues>({
+    fullName: "",
+    email: "",
+  });
 
-	const [errors, setError] = useState<FormErrors>({
-		fullName: false,
-		email: false
-	});
-	
-	const handleFormSubmit: FormEventHandler = (e) => {
-		e.preventDefault();
+  const [errors, setError] = useState<FormErrors>({
+    fullName: false,
+    email: false,
+  });
 
-		const errors = mapErrors(values);
+  const handleFormSubmit: FormEventHandler = (e) => {
+    e.preventDefault();
 
-		if (hasError(errors)) {
-			setError(errors);
-			return;
-		}
+    const errors = mapErrors(values);
 
-		onFormSubmit(values);
-	}
+    if (hasError(errors)) {
+      setError(errors);
+      return;
+    }
 
-	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-		if (hasError(errors)) {
-			setError({
-				fullName: false,
-				email: false
-			});
-		}
+    onFormSubmit(values);
+  };
 
-		const { name, value } = e.target;
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (hasError(errors)) {
+      setError({
+        fullName: false,
+        email: false,
+      });
+    }
 
-		setValue((prevState) => ({...prevState, [name]: value}));
-	};
+    const { name, value } = e.target;
 
-	return (
-		<StyledForm onSubmit={handleFormSubmit} noValidate>
-			<StyledLabel htmlFor="fullName">
-				Full Name
-			</StyledLabel>
-			<StyledField>
-				<StyledInput onChange={handleChange} id="fullName" name="fullName" type="text" value={values.fullName} />
-				{errors.fullName && <StyledError>Full Name must be provided</StyledError>}
-			</StyledField>
-			<StyledLabel htmlFor="email">
-				Email
-			</StyledLabel>
-			<StyledField>
-				<StyledInput onChange={handleChange} id="email" name="email" type="email" value={values.email} />
-				{errors.email && <StyledError>Email must be properly formatted</StyledError>}
-			</StyledField>
-			<button type="submit">Create Appointment</button>
-		</StyledForm>
-	);
+    setValue((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  return (
+    <StyledForm onSubmit={handleFormSubmit} noValidate>
+      <StyledLabel htmlFor="fullName">Full Name</StyledLabel>
+      <StyledField>
+        <StyledInput
+          onChange={handleChange}
+          id="fullName"
+          name="fullName"
+          type="text"
+          value={values.fullName}
+        />
+        {errors.fullName && (
+          <StyledError>Full Name must be provided</StyledError>
+        )}
+      </StyledField>
+      <StyledLabel htmlFor="email">Email</StyledLabel>
+      <StyledField>
+        <StyledInput
+          onChange={handleChange}
+          id="email"
+          name="email"
+          type="email"
+          value={values.email}
+        />
+        {errors.email && (
+          <StyledError>Email must be properly formatted</StyledError>
+        )}
+      </StyledField>
+      <button type="submit">Create Appointment</button>
+    </StyledForm>
+  );
 };
