@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
+import { UserContext } from "../context/user";
 import {
   StyledSection,
   StyledContainer,
@@ -6,6 +7,8 @@ import {
 import { UserForm } from "../templates/login/form/form";
 
 export const LoginPage: FunctionComponent = () => {
+  const { setUser } = useContext(UserContext);
+
   return (
     <StyledContainer>
       <StyledSection>

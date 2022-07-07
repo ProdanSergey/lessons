@@ -4,7 +4,7 @@ import { completeAppointment } from "../../../shared/api/appointment";
 import { Appointment } from "../../../shared/domain/appointment";
 import { StyledAlert } from "../../../shared/elements/alert.styled";
 import { StyledButton } from "../../../shared/elements/button.styled";
-import { useAsyncHandler } from "../../../shared/hooks/use-async-handler";
+import { useDataHandler } from "../../../shared/hooks/use-data-handler";
 import { AppointmentCard } from "../../../components/appointment-card";
 
 export type PickedAppointmentProps = {
@@ -14,7 +14,7 @@ export type PickedAppointmentProps = {
 export const PickedAppointment: FunctionComponent<PickedAppointmentProps> = ({
   appointment,
 }) => {
-  const { data, error, isLoading, asyncHandler } = useAsyncHandler<
+  const { data, error, isLoading, dataHandler } = useDataHandler<
     undefined,
     Error
   >(() => {
@@ -31,7 +31,7 @@ export const PickedAppointment: FunctionComponent<PickedAppointmentProps> = ({
         <h2>You are currently working with:</h2>
       </header>
       <AppointmentCard appointment={appointment} />
-      <StyledButton disabled={isLoading} onClick={asyncHandler}>
+      <StyledButton disabled={isLoading} onClick={() => dataHandler(undefined)}>
         Complete
       </StyledButton>
       {error && <StyledAlert size="m">{error.message}</StyledAlert>}

@@ -1,4 +1,9 @@
 import React, { useState, FunctionComponent, useEffect } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+
 import { Appointment } from "../../../shared/domain/appointment";
 import {
   StyledCountdown,
@@ -6,8 +11,8 @@ import {
   StyledOutput,
 } from "./queued-appointment.styled";
 
-const formatMoment = (start: string, moment: Date): string => {
-  return "time since start";
+const formatMoment = (start: string, now: Dayjs): string => {
+  return dayjs(start).from(now);
 };
 
 type QueueTimerProps = {
@@ -15,13 +20,25 @@ type QueueTimerProps = {
 };
 
 const QueueTimer: FunctionComponent<QueueTimerProps> = ({ start }) => {
-  // update moment each 15 sec
+  const [now, setNow] = useState(dayjs());
+
+  useEffect(() => {
+    const update = () => {
+      setNow(dayjs());
+    };
+
+    const timerId = setInterval(update, 15 * 1000);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
 
   return (
     <div>
       <span>Queued:</span>{" "}
       <StyledCountdown dateTime={start}>
-        {formatMoment(start, moment)}
+        {formatMoment(start, now)}
       </StyledCountdown>
     </div>
   );

@@ -15,7 +15,7 @@ export const AppointmentsPage: FunctionComponent = () => {
 
     return {
       data,
-      completed: false,
+      timeout: 15 * 1000,
     };
   }, []);
 

@@ -5,6 +5,7 @@ import { ViewAppointmentPage } from "./pages/view-appointment";
 import { LoginPage } from "./pages/login";
 import { UserContext } from "./context/user";
 import { capitalize } from "./shared/helpers/string.capitalize";
+import { AuthorizedGuard, DeAuthorizedGuard } from "./components/guard";
 
 const AppComponent = () => {
   const { user } = useContext(UserContext);
@@ -17,13 +18,31 @@ const AppComponent = () => {
       <main>
         <Routes>
           <Route path="/">
-            {/* authorized only */}
-            <Route index element={<AppointmentsPage />} />
-            {/* authorized only */}
-            <Route path=":appointmentId" element={<ViewAppointmentPage />} />
+            <Route
+              index
+              element={
+                <AuthorizedGuard>
+                  <AppointmentsPage />
+                </AuthorizedGuard>
+              }
+            />
+            <Route
+              path=":appointmentId"
+              element={
+                <AuthorizedGuard>
+                  <ViewAppointmentPage />
+                </AuthorizedGuard>
+              }
+            />
           </Route>
-          {/* de-authorized only */}
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={
+              <DeAuthorizedGuard>
+                <LoginPage />
+              </DeAuthorizedGuard>
+            }
+          />
         </Routes>
       </main>
     </>

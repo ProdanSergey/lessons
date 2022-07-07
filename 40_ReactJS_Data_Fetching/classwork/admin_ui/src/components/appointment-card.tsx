@@ -1,4 +1,9 @@
 import React, { FunctionComponent } from "react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+
 import { Appointment } from "../shared/domain/appointment";
 import { StyledItem, StyledList } from "./appointment-card.styled";
 
@@ -6,7 +11,9 @@ export type AppointmentCardProps = {
   appointment: Appointment;
 };
 
-const formatDate = (timestamp: string): string => {};
+const formatDate = (timestamp: string): string => {
+  return dayjs(timestamp).fromNow();
+};
 
 export const AppointmentCard: FunctionComponent<AppointmentCardProps> = ({
   appointment,

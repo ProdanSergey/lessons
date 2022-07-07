@@ -10,12 +10,12 @@ import {
 } from "../shared/elements/layout.styled";
 import { StyledSpacer } from "../shared/elements/spacer.styled";
 import { StyledAlert } from "../shared/elements/alert.styled";
-import { useAsyncHandler } from "../shared/hooks/use-async-handler";
+import { useDataHandler } from "../shared/hooks/use-data-handler";
 import { AppointmentForm } from "../templates/create-appointment/form/form";
 import { AppointmentOutput } from "../templates/create-appointment/output/output";
 
 export const CreateAppointmentPage: FunctionComponent = () => {
-  const { data, error, isLoading, dataHandler } = useAsyncHandler<
+  const { data, error, isLoading, dataHandler } = useDataHandler<
     Appointment,
     Error,
     CreateAppointmentBody

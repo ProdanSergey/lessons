@@ -16,6 +16,18 @@ type PageParams = {
   appointmentId: string;
 };
 
+const mapAppointmentViewComponent = (data: Appointment): JSX.Element => {
+  if (data.completed) {
+    return <CompletedAppointment appointment={data} />;
+  }
+
+  if (data.operator) {
+    return <PickedAppointment appointment={data} />;
+  }
+
+  return <QueuedAppointment appointment={data} />;
+};
+
 export const ViewAppointmentPage: FunctionComponent = () => {
   const { appointmentId } = useParams<PageParams>();
 
@@ -33,7 +45,7 @@ export const ViewAppointmentPage: FunctionComponent = () => {
     };
   }, [appointmentId]);
 
-  const { error, data } = useDataPuller<Appointment, Error>(pullAppointment);
+  const { data, error } = useDataPuller<Appointment, Error>(pullAppointment);
 
   return (
     <StyledContainer>
@@ -43,7 +55,9 @@ export const ViewAppointmentPage: FunctionComponent = () => {
         </StyledSection>
       )}
 
-      {/* render data */}
+      {data && (
+        <StyledSection>{mapAppointmentViewComponent(data)}</StyledSection>
+      )}
     </StyledContainer>
   );
 };

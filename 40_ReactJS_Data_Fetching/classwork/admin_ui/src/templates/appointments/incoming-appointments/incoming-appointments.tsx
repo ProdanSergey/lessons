@@ -6,7 +6,7 @@ import { pickAppointment } from "../../../shared/api/appointment";
 import { Appointment } from "../../../shared/domain/appointment";
 import { StyledAlert } from "../../../shared/elements/alert.styled";
 import { StyledButton } from "../../../shared/elements/button.styled";
-import { useAsyncHandler } from "../../../shared/hooks/use-async-handler";
+import { useDataHandler } from "../../../shared/hooks/use-data-handler";
 import {
   StyledItem,
   StyledList,
@@ -26,9 +26,10 @@ const IncomingAppointment: FunctionComponent<IncomingAppointmentProps> = ({
 }) => {
   const { user } = useContext(UserContext);
 
-  const { data, error, isLoading, asyncHandler } = useAsyncHandler<
+  const { data, error, isLoading, dataHandler } = useDataHandler<
     undefined,
-    Error
+    Error,
+    undefined
   >(async () => {
     if (!user) {
       throw new Error("Not Authorized");
@@ -50,7 +51,10 @@ const IncomingAppointment: FunctionComponent<IncomingAppointmentProps> = ({
     <StyledItem>
       <StyledCardContainer>
         <AppointmentCard appointment={appointment} />
-        <StyledButton disabled={isLoading} onClick={asyncHandler}>
+        <StyledButton
+          disabled={isLoading}
+          onClick={() => dataHandler(undefined)}
+        >
           Pick
         </StyledButton>
       </StyledCardContainer>

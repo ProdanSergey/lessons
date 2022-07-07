@@ -1,8 +1,12 @@
 import React, { FunctionComponent } from "react";
+import dayjs from "dayjs";
+
 import { Appointment } from "../../../shared/domain/appointment";
 
 const formatMoment = (finish: string) => {
-  return "DD/MM/YYYY at HH:mm:ss";
+  return `${dayjs(finish).format("DD/MM/YYYY")} at ${dayjs(finish).format(
+    "HH:mm:ss"
+  )}`;
 };
 
 const formatOperator = (operator: Appointment["operator"]) => {

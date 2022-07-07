@@ -11,12 +11,12 @@ import { PickedAppointment } from "../templates/view-appointment/picked-appointm
 import { Appointment } from "../shared/domain/appointment";
 import { CompletedAppointment } from "../templates/view-appointment/completed-appointment/completed-appointment";
 
-const mapAppointmentOverview = (appointment: Appointment): React.ReactNode => {
-  if (appointment.completed) {
-    return <CompletedAppointment appointment={appointment} />;
+const mapAppointmentViewComponent = (data: Appointment): React.ReactNode => {
+  if (data.completed) {
+    return <CompletedAppointment appointment={data} />;
   }
 
-  return <PickedAppointment appointment={appointment} />;
+  return <PickedAppointment appointment={data} />;
 };
 
 type PageParams = {
@@ -43,7 +43,9 @@ export const ViewAppointmentPage: FunctionComponent = () => {
         </StyledSection>
       )}
 
-      {data && <StyledSection>{mapAppointmentOverview(data)}</StyledSection>}
+      {data && (
+        <StyledSection>{mapAppointmentViewComponent(data)}</StyledSection>
+      )}
     </StyledContainer>
   );
 };
